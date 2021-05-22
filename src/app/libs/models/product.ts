@@ -9,4 +9,11 @@ export interface Product {
     price: number;
     tags: string[];
     category: string;
+    state: ProductState;
+}
+
+export enum ProductState {
+    Active = 'active',
+    Deactive = 'deactive',
+    OutOfStock = 'outofstock'
 }

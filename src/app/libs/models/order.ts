@@ -1,9 +1,9 @@
 import { Address } from "./address";
-import { Person } from "./person";
 import { Product } from "./product";
 
 export interface Order {
-    user: Person;
+    id: string;
+    uid: string;
     address: Address;
     state: OrderState;
     orderedProducts: OrderedProduct[];

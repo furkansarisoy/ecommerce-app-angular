@@ -19,12 +19,12 @@ export class ProductService {
     return this.angularFirestore.collection<Product>('products', ref => ref.where('id', '==', productId)).valueChanges();
   }
 
-  updateProductById(productId: string, productData: Product) {
+  updateProductById(productId: string, productData: any) {
     const productRef = this.angularFirestore.doc(`products/${productId}`);
     return productRef.update(productData)
       .then(() => {
-        this.nzNotificationService.success("Başarılı!", "Ürün başarılı bir şekilde güncellendi");
-      }).catch(error => this.nzNotificationService.error("Hata!", "Ürün güncellenirken bir hata ile karşılaşıldı:" + error))
+        this.nzNotificationService.success("Başarılı!", "Ürün başarılı bir şekilde güncellendi", { nzPlacement: 'bottomRight' });
+      }).catch(error => this.nzNotificationService.error("Hata!", "Ürün güncellenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
   }
 
   createProduct(product: Product) {
@@ -37,8 +37,8 @@ export class ProductService {
     return productRef.set(productData, {
       merge: true
     }).then(() => {
-      this.nzNotificationService.success("Başarılı!", "Yeni ürün başarılı bir şekilde eklendi");
-    }).catch(error => this.nzNotificationService.error("Hata!", "Yeni ürün eklenirken bir hata ile karşılaşıldı:" + error))
+      this.nzNotificationService.success("Başarılı!", "Yeni ürün başarılı bir şekilde eklendi", { nzPlacement: 'bottomRight' });
+    }).catch(error => this.nzNotificationService.error("Hata!", "Yeni ürün eklenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
   }
 
 }
