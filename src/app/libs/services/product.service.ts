@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Product } from '../models/product';
+import { CategorizedProduct, Product } from '../models/product';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable({
@@ -39,6 +39,43 @@ export class ProductService {
     }).then(() => {
       this.nzNotificationService.success("Başarılı!", "Yeni ürün başarılı bir şekilde eklendi", { nzPlacement: 'bottomRight' });
     }).catch(error => this.nzNotificationService.error("Hata!", "Yeni ürün eklenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
+  }
+
+  categorizeProducts(products: Product[]): CategorizedProduct[] {
+
+    const categories = this.getCategories(products);
+
+    /* categorize products which have any category */
+    const categorizedProducts = categories.map(category => {
+      /* get products of the category */
+      const productsByCategory = products.filter(product => product.category === category);
+      return {
+        category: category,
+        data: productsByCategory
+      };
+    });
+
+    return categorizedProducts;
+  }
+
+  getCategories(products: Product[]): string[] {
+    /* handle when products data is broken or empty array */
+    if (!products) {
+      return null;
+    } else if (!products.length) {
+      return [];
+    }
+
+    /* get categories */
+    const allCategories = products
+      .map(product => {
+        return product.category
+      });
+
+    /* Delete duplicate */
+    const categories = [...new Set(allCategories)];
+
+    return categories;
   }
 
 }

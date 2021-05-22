@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product, ProductState } from './libs/models/product';
+import { Gender, Product, ProductState } from './libs/models/product';
 import { ProductService } from './libs/services/product.service';
 
 @Component({
@@ -12,7 +12,6 @@ export class AppComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-
   }
 
   addNewProduct() {
@@ -25,8 +24,9 @@ export class AppComponent implements OnInit {
       previewImageUrls: ['url1', 'url2'],
       price: 200,
       tags: ['test', 'deneme'],
-      category: 'Deneme Kategorisi',
-      state: ProductState.Active
+      category: 'Deneme Kategorisi 2',
+      state: ProductState.Active,
+      gender: Gender.Male
     };
     this.productService.createProduct(product).then(res => console.log(res));
   }

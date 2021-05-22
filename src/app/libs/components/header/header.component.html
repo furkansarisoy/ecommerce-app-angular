@@ -18,7 +18,9 @@
             <a routerLink="login">Giriş Yap</a>
         </div>
         <div class="cart-search">
-            <i class="fas fa-shopping-cart"></i>
+            <object data="assets/icons/cart.svg"
+                    width="18px"
+                    style="color: wheat;"></object>
             <i class="fas fa-search"></i>
         </div>
     </div>
@@ -27,12 +29,13 @@
     <a routerLink="">
         <div class="brand">
             <img src="./assets/logo.jpg"
-                 width="60px">
+                 width="50px">
         </div>
     </a>
     <div class="menu">
         <ul>
-            <li *ngFor="let item of menuItems">
+            <li *ngFor="let item of menuItems"
+                (click)="onMenuItemClick(item.url)">
                 {{item.label}}
             </li>
         </ul>

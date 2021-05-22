@@ -1,0 +1,42 @@
+<section>
+    <div class="image-container">
+    </div>
+    <div class="content">
+        <div class="categories">
+            <h2>Kategoriler</h2>
+            <ul>
+                <li *ngFor="let category of categories">
+                    {{category}}
+                </li>
+            </ul>
+        </div>
+        <div class="products">
+            <ng-container *ngFor="let product of products[selectedCategory].data">
+                <nz-card nzHoverable
+                         style="width:240px"
+                         [nzCover]="coverTemplate">
+                    <div class="card-body">
+                        <div class="card-informations">
+                            <h2 style="margin-bottom: 0px;">
+                                {{product.title}}
+                            </h2>
+                            <h3>
+                                ₺{{product.price}}
+                            </h3>
+                        </div>
+                        <div class="card-buttons">
+                            <i class="fas fa-cart-plus"></i>
+                            <i class="fas fa-heart"
+                               style="margin-left: 20px;"></i>
+                        </div>
+                    </div>
+                </nz-card>
+                <ng-template #coverTemplate>
+                    <img class="card-image"
+                         [src]="product.previewImageUrls[0]" />
+                </ng-template>
+            </ng-container>
+
+        </div>
+    </div>
+</section>

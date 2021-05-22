@@ -11,9 +11,11 @@ export class HeaderComponent implements OnInit {
   menuItems = [
     {
       label: 'Ana Sayfa',
+      url: 'homepage'
     },
     {
       label: 'Kategoriler',
+      url: 'categories'
     },
     {
       label: 'Yeni Sezon',
@@ -23,9 +25,15 @@ export class HeaderComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onMenuItemClick(url) {
+    if (url) {
+      this.router.navigate([url]);
+    }
   }
 
 }

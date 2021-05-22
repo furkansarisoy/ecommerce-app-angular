@@ -2,18 +2,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-// Component imports
-import { UserComponent } from './user.component';
-
 // Ng zorro modules
 import { ComponentsModule } from '../../components/components.module';
+
+// Component imports
+import { UserComponent } from './user.component';
 import { HomepageComponent } from '../../components/homepage/homepage.component';
+import { CategoriesComponent } from '../../components/categories/categories.component';
 
 const routes: Routes = [
   {
     path: '', component: UserComponent, children: [
       {
         path: 'homepage', component: HomepageComponent
+      },
+      {
+        path: 'categories', component: CategoriesComponent
       }
     ]
   }
