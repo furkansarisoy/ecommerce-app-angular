@@ -7,6 +7,7 @@ import { registerLocaleData } from '@angular/common';
 import tr from '@angular/common/locales/tr';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes } from '@angular/router';
 
 // Firebase imports
 import { AngularFireModule } from '@angular/fire';
@@ -23,6 +24,13 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 registerLocaleData(tr);
 
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () => import('./libs/pages/user/user.module').then(m => m.UserModule)
+  }
+];
+
 @NgModule({
   declarations: [
     AppComponent
@@ -30,6 +38,7 @@ registerLocaleData(tr);
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    RouterModule.forRoot(routes),
     AngularFireDatabaseModule,
     NzNotificationModule,
     FormsModule,
