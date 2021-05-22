@@ -1,0 +1,12 @@
+<nz-carousel nzDotPosition="left"
+             nzAutoPlay>
+    <div *ngFor="let image of images"
+         class="carousel-wrapper"
+         [style.background-image]="'url('+image+')'"
+         nz-carousel-content>
+        <div class="overlay">
+            <h1>Lorem Ipsum</h1>
+            <h3>dolor sit amet</h3>
+        </div>
+    </div>
+</nz-carousel>

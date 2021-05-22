@@ -7,10 +7,15 @@ import { UserComponent } from './user.component';
 
 // Ng zorro modules
 import { ComponentsModule } from '../../components/components.module';
+import { HomepageComponent } from '../../components/homepage/homepage.component';
 
 const routes: Routes = [
   {
-    path: '', component: UserComponent
+    path: '', component: UserComponent, children: [
+      {
+        path: 'homepage', component: HomepageComponent
+      }
+    ]
   }
 ]
 
