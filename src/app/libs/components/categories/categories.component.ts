@@ -37,4 +37,10 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     });
   }
 
+  onCategoryItemClick(index) {
+    this.selectedCategory = index;
+    console.log(index);
+
+  }
+
 }

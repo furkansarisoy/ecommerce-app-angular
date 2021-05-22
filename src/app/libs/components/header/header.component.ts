@@ -14,15 +14,17 @@ export class HeaderComponent implements OnInit {
       url: 'homepage'
     },
     {
-      label: 'Kategoriler',
-      url: 'categories'
+      label: 'Kadın',
+      url: 'women'
     },
     {
-      label: 'Yeni Sezon',
+      label: 'Erkek',
+      url: 'man'
     },
     {
-      label: 'İndirim',
-    }
+      label: 'Saat & Aksesuar',
+      url: 'unisex'
+    },
   ]
 
   constructor(private router: Router) { }

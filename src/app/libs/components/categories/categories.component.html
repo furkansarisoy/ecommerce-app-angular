@@ -5,7 +5,8 @@
         <div class="categories">
             <h2>Kategoriler</h2>
             <ul>
-                <li *ngFor="let category of categories">
+                <li *ngFor="let category of categories; let i = index"
+                    (click)="onCategoryItemClick(i)">
                     {{category}}
                 </li>
             </ul>
@@ -17,18 +18,20 @@
                          [nzCover]="coverTemplate">
                     <div class="card-body">
                         <div class="card-informations">
-                            <h2 style="margin-bottom: 0px;">
-                                {{product.title}}
-                            </h2>
-                            <h3>
-                                ₺{{product.price}}
-                            </h3>
+                            <div>
+                                <span class="product-title">
+                                    {{product.title}}
+                                </span>
+                            </div>
+                            <div>
+                                <span class="product-price">
+                                    ₺{{product.price}}
+                                </span>
+                            </div>
                         </div>
-                        <div class="card-buttons">
-                            <i class="fas fa-cart-plus"></i>
-                            <i class="fas fa-heart"
-                               style="margin-left: 20px;"></i>
-                        </div>
+                    </div>
+                    <div class="favorite">
+                        <i class="fvrt"></i>
                     </div>
                 </nz-card>
                 <ng-template #coverTemplate>
