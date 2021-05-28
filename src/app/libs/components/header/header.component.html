@@ -13,9 +13,9 @@
     </div>
     <div class="wrapper">
         <div class="linked-list">
-            <a routerLink="register">Kayıt Ol</a>
+            <a [routerLink]="['/register']">Kayıt Ol</a>
             <hr />
-            <a routerLink="login">Giriş Yap</a>
+            <a [routerLink]="['/login']">Giriş Yap</a>
         </div>
         <div class="cart-search">
             <i class="fas fa-shopping-bag"></i>
@@ -24,7 +24,7 @@
     </div>
 </div>
 <div class="navigation-bar">
-    <a routerLink="">
+    <a [routerLink]="['/homepage']">
         <div class="brand">
             <img src="./assets/logo.jpg"
                  width="50px">

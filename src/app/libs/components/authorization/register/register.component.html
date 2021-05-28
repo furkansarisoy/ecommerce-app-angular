@@ -1,0 +1,49 @@
+<div class="register-page">
+
+    <div class="welcome-area">
+        <div>
+            <h2>Hoşgeldin</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                In rutrum faucibus sem, ac pulvinar lorem fringilla ac.
+                Nam porta cursus mi, non efficitur est iaculis nec.
+                Fusce nisi augue, posuere at tortor ut,
+                interdum luctus diam.
+            </p>
+        </div>
+        <div class="world-image">
+        </div>
+
+    </div>
+
+    <div class="register-area">
+        <nz-card>
+            <h2>Yeni Hesap Oluştur</h2>
+            <form>
+                <div>
+                    <input type="text"
+                           nz-input
+                           placeholder="Adınız" />
+                    <input type="text"
+                           nz-input
+                           placeholder="Soyadınız" />
+                </div>
+                <input type="text"
+                       nz-input
+                       placeholder="Kullanıcı Adı" />
+                <input type="text"
+                       nz-input
+                       placeholder="E-mail" />
+                <input type="text"
+                       nz-input
+                       placeholder="Şifre" />
+                <input type="text"
+                       nz-input
+                       placeholder="Şifrenizi Doğrulayın" />
+                <button nz-button
+                        nz-size="large"
+                        style="margin-bottom: 20px;">Kayıt Ol</button>
+                <span>Zaten üye misin ?<a [routerLink]="['/login']"> Giriş Yap</a></span>
+            </form>
+        </nz-card>
+    </div>
+</div>

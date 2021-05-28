@@ -1,0 +1,74 @@
+<div class="login-page">
+
+    <div class="welcome-area">
+        <div>
+            <h2>Hoşgeldin</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                In rutrum faucibus sem, ac pulvinar lorem fringilla ac.
+                Nam porta cursus mi, non efficitur est iaculis nec.
+                Fusce nisi augue, posuere at tortor ut,
+                interdum luctus diam.
+            </p>
+        </div>
+        <div class="world-image">
+        </div>
+
+    </div>
+
+    <div class="login-area">
+        <nz-card>
+            <h2 style="margin-bottom: 50px;">Giriş Yap</h2>
+            <form>
+                <nz-input-group [nzPrefix]="prefixTemplateMail">
+                    <input type="text"
+                           nz-input
+                           placeholder="E-mail" />
+                </nz-input-group>
+                <nz-input-group [nzPrefix]="prefixTemplatePassword">
+                    <input type="text"
+                           nz-input
+                           placeholder="Şifre" />
+                </nz-input-group>
+                <div class="additional-routes">
+                    <div>
+                        <span>Hala üye değil misin?</span><br>
+                        <a [routerLink]="['/register']">Kayıt Ol</a>
+                    </div>
+                    <div>
+                        <a [routerLink]="['/reset-password']">Şifremi Unuttum</a>
+                    </div>
+                </div>
+                <button nz-button
+                        nz-size="large"
+                        style="margin-bottom: 20px;">Giriş Yap</button>
+                <span style="margin: 20px 0px;">Veya</span>
+            </form>
+            <div class="social-buttons">
+                <button nz-button
+                        class="facebook-button"
+                        style="margin-right: 20px;">
+                    <i class="fab fa-facebook-f"
+                       style="color:white; margin-right: 5px;"></i>
+                    Facebook
+                </button>
+                <button nz-button
+                        class="twitter-button">
+                    <i class="fab fa-twitter"
+                       style="color:white; margin-right: 5px;"></i>
+                    Twitter
+                </button>
+            </div>
+        </nz-card>
+    </div>
+</div>
+
+<ng-template #prefixTemplateMail>
+    <i nz-icon
+       nzType="user"
+       nzTheme="outline"></i>
+</ng-template>
+<ng-template #prefixTemplatePassword>
+    <i nz-icon
+       nzType="lock"
+       nzTheme="outline"></i>
+</ng-template>
