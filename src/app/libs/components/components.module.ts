@@ -14,10 +14,10 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { LoginComponent } from './authorization/login/login.component';
-import { RegisterComponent } from './authorization/register/register.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
 import { RouterModule } from '@angular/router';
-import { ResetPasswordComponent } from './authorization/reset-password/reset-password.component';
+import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
 
 
 @NgModule({

@@ -9,9 +9,9 @@ import { ComponentsModule } from '../../components/components.module';
 import { UserComponent } from './user.component';
 import { HomepageComponent } from '../../components/homepage/homepage.component';
 import { CategoriesComponent } from '../../components/categories/categories.component';
-import { LoginComponent } from '../../components/authorization/login/login.component';
-import { RegisterComponent } from '../../components/authorization/register/register.component';
-import { ResetPasswordComponent } from '../../components/authorization/reset-password/reset-password.component';
+import { LoginComponent } from '../../components/authentication/login/login.component';
+import { RegisterComponent } from '../../components/authentication/register/register.component';
+import { ResetPasswordComponent } from '../../components/authentication/reset-password/reset-password.component';
 
 const routes: Routes = [
   {
