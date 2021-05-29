@@ -12,6 +12,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 // Components
 import { HeaderComponent } from './header/header.component';
@@ -22,6 +25,7 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { RouterModule } from '@angular/router';
 import { ResetPasswordComponent } from './authentication/reset-password/reset-password.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { CartComponent } from './header/cart/cart.component';
 
 
 @NgModule({
@@ -32,7 +36,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     LoginComponent,
     RegisterComponent,
     ResetPasswordComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +51,10 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     RouterModule,
     NzFormModule,
     NzRadioModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzBadgeModule,
+    NzDropDownModule,
+    NzToolTipModule
   ],
   exports: [
     HeaderComponent

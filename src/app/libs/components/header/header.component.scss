@@ -5,15 +5,17 @@
     justify-content: space-between;
     background-color: #141414;
 
-    svg,
-    span {
-        color: #8d8d8d;
-        margin-right: 10px;
-        font-size: 15px;
-        cursor: pointer;
-        transition: 0.3s;
-        &:hover {
-            color: var(--green-color);
+    ::ng-deep {
+        svg,
+        span {
+            color: #8d8d8d;
+            margin-right: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            &:hover {
+                color: var(--green-color);
+            }
         }
     }
 
@@ -62,5 +64,15 @@
                 color: var(--green-color);
             }
         }
+    }
+}
+
+.cart-user {
+    display: flex;
+    justify-content: space-between;
+    width: 75px;
+    ::ng-deep svg {
+        font-size: 25px;
+        cursor: pointer;
     }
 }

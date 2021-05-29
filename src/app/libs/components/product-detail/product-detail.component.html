@@ -1,10 +1,10 @@
 <section class="product-detail">
     <div class="product-image">
-        <img [src]="product.previewImageUrls[0]">
+        <img [src]="checkPreviewImage(product)">
     </div>
     <div class="product">
         <div class="information-text">
-            <h1>{{product.title}}</h1>
+            <h1>{{product?.title}}</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim quam eu velit laoreet,
                 sed cursus est blandit. Donec rhoncus nisl et purus rhoncus malesuada. Phasellus posuere convallis
                 nulla,
@@ -12,14 +12,14 @@
         </div>
         <div class="options">
             <span class="price">
-                ₺{{product.price}}
+                ₺{{product?.price}}
             </span>
             <hr>
             <div class="color-options">
                 <span class="colors">Renk</span>
                 <nz-radio-group nzButtonStyle="solid"
                                 [(ngModel)]="selectedColor">
-                    <label *ngFor="let color of product.colors"
+                    <label *ngFor="let color of product?.colors"
                            nz-radio-button
                            [nzValue]="color">
                         {{color}}
@@ -32,7 +32,7 @@
                 <span class="sizes">Beden</span>
                 <nz-radio-group nzButtonStyle="solid"
                                 [(ngModel)]="selectedSize">
-                    <label *ngFor="let size of product.sizes"
+                    <label *ngFor="let size of product?.sizes"
                            nz-radio-button
                            [nzValue]="size">
                         {{size}}

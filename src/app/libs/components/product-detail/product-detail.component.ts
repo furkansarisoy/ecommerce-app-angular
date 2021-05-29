@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
 import { Product } from '../../models/product';
 import { CartService } from '../../services/cart.service';
@@ -22,7 +23,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    private cartService: CartService) {
+    private cartService: CartService,
+    private nzNotificationService: NzNotificationService) {
 
   }
 
@@ -56,11 +58,21 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       size: this.selectedSize,
       count: this.count
     };
-    this.cartService.addToCart(order);
+    if (order.color && order.size) {
+      this.cartService.addToCart(order);
+      this.nzNotificationService.success('Ürün sepete eklendi', ` ${order.product.title} isimli ürün sepete eklendi`, { nzPlacement: 'bottomRight' });
+    } else {
+      this.nzNotificationService.error(order.product.title, 'Renk veya beden seçilmedi', { nzPlacement: 'bottomRight' });
+    }
   }
 
   onAddFavClick() {
     const fav = this.product;
     console.log(fav);
   }
+
+  checkPreviewImage(item) {
+    return item?.previewImageUrls?.length ? item.previewImageUrls[0] : '';
+  }
+
 }

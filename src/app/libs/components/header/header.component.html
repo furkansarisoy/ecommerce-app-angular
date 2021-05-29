@@ -17,9 +17,10 @@
             <hr />
             <a [routerLink]="['/login']">Giriş Yap</a>
         </div>
-        <div class="cart-search">
-            <i class="fas fa-shopping-bag"></i>
-            <i class="fas fa-search"></i>
+        <div class="search">
+            <i nz-icon
+               nzType="search"
+               nzTheme="outline"></i>
         </div>
     </div>
 </div>
@@ -38,3 +39,10 @@
             </li>
         </ul>
     </div>
+    <div class="cart-user">
+        <app-cart></app-cart>
+        <i nz-icon
+           nzType="user"
+           nzTheme="outline"></i>
+    </div>
+</div>
