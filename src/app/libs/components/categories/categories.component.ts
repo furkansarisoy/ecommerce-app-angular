@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CategorizedProduct } from '../../models/product';
 import { ProductService } from '../../services/product.service';
@@ -16,7 +17,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   selectedCategory = 0;
   subscriptions: Subscription[];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.subscriptions = [
@@ -41,6 +42,10 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     this.selectedCategory = index;
     console.log(index);
 
+  }
+
+  onProductClick(id: string) {
+    this.router.navigate([`/product/${id}`]);
   }
 
 }

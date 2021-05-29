@@ -12,6 +12,7 @@ import { CategoriesComponent } from '../../components/categories/categories.comp
 import { LoginComponent } from '../../components/authentication/login/login.component';
 import { RegisterComponent } from '../../components/authentication/register/register.component';
 import { ResetPasswordComponent } from '../../components/authentication/reset-password/reset-password.component';
+import { ProductDetailComponent } from '../../components/product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,9 @@ const routes: Routes = [
       },
       {
         path: 'reset-password', component: ResetPasswordComponent
+      },
+      {
+        path: 'product/:id', component: ProductDetailComponent
       }
     ]
   }

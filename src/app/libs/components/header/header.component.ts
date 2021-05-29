@@ -15,15 +15,15 @@ export class HeaderComponent implements OnInit {
     },
     {
       label: 'Kadın',
-      url: 'women'
+      url: 'categories'
     },
     {
       label: 'Erkek',
-      url: 'man'
+      url: 'categories'
     },
     {
       label: 'Saat & Aksesuar',
-      url: 'unisex'
+      url: 'categories'
     },
   ]
 

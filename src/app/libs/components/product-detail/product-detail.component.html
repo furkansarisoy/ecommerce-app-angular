@@ -1,0 +1,70 @@
+<section class="product-detail">
+    <div class="product-image">
+        <img [src]="product.previewImageUrls[0]">
+    </div>
+    <div class="product">
+        <div class="information-text">
+            <h1>{{product.title}}</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dignissim quam eu velit laoreet,
+                sed cursus est blandit. Donec rhoncus nisl et purus rhoncus malesuada. Phasellus posuere convallis
+                nulla,
+                et eleifend ipsum. Vivamus malesuada elit eu metus interdum, id finibus ante fermentum.</p>
+        </div>
+        <div class="options">
+            <span class="price">
+                ₺{{product.price}}
+            </span>
+            <hr>
+            <div class="color-options">
+                <span class="colors">Renk</span>
+                <nz-radio-group nzButtonStyle="solid"
+                                [(ngModel)]="selectedColor">
+                    <label *ngFor="let color of product.colors"
+                           nz-radio-button
+                           [nzValue]="color">
+                        {{color}}
+                    </label>
+
+                </nz-radio-group>
+            </div>
+            <hr>
+            <div class="size-options">
+                <span class="sizes">Beden</span>
+                <nz-radio-group nzButtonStyle="solid"
+                                [(ngModel)]="selectedSize">
+                    <label *ngFor="let size of product.sizes"
+                           nz-radio-button
+                           [nzValue]="size">
+                        {{size}}
+                    </label>
+
+                </nz-radio-group>
+            </div>
+            <hr>
+            <div class="count-options">
+                <span class="count">Adet</span>
+                <nz-input-number [(ngModel)]="count"
+                                 [nzMin]="1"
+                                 [nzStep]="1"></nz-input-number>
+            </div>
+            <hr>
+        </div>
+        <div class="buttons">
+            <button class="cart-button"
+                    nz-button
+                    (click)="onAddCartClick()">Sepete Ekle
+                <i nz-icon
+                   nzType="shopping-cart"
+                   nzTheme="outline"></i>
+            </button>
+            <button class="fav-button"
+                    nz-button
+                    (click)="onAddFavClick()">Favorilere Ekle
+                <i nz-icon
+                   nzType="heart"
+                   nzTheme="outline"></i>
+            </button>
+        </div>
+    </div>
+
+</section>

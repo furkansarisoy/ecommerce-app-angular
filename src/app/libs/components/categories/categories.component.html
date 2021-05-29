@@ -15,7 +15,8 @@
             <ng-container *ngFor="let product of products[selectedCategory].data">
                 <nz-card nzHoverable
                          style="width:240px"
-                         [nzCover]="coverTemplate">
+                         [nzCover]="coverTemplate"
+                         (click)="onProductClick(product.id)">
                     <div class="card-body">
                         <div class="card-informations">
                             <div>
