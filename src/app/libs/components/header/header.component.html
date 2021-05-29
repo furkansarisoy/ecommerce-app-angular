@@ -12,7 +12,8 @@
         </div>
     </div>
     <div class="wrapper">
-        <div class="linked-list">
+        <div *ngIf="!activePerson"
+             class="linked-list">
             <a [routerLink]="['/register']">Kayıt Ol</a>
             <hr />
             <a [routerLink]="['/login']">Giriş Yap</a>
@@ -41,8 +42,7 @@
     </div>
     <div class="cart-user">
         <app-cart></app-cart>
-        <i nz-icon
-           nzType="user"
-           nzTheme="outline"></i>
+        <app-user-dropdown *ngIf="activePerson"
+                           (logOut)="logOut()"></app-user-dropdown>
     </div>
 </div>

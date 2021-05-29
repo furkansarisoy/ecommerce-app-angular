@@ -15,71 +15,74 @@
 
     </div>
 
-    <div class="register-area">
-        <nz-card>
-            <h2>Yeni Hesap Oluştur</h2>
-            <form nz-form
-                  nzLayout="vertical"
-                  [formGroup]="registerForm"
-                  (ngSubmit)="onSubmit()">
-                <div>
-                    <nz-form-item>
-                        <nz-form-control nzHasFeedback
-                                         [nzErrorTip]="errorTpl">
-                            <nz-form-label nzRequired
-                                           nzFor="name">Adınız
-                            </nz-form-label>
-                            <input type="text"
-                                   nz-input
-                                   placeholder="Adınız"
-                                   formControlName="name" />
-                        </nz-form-control>
-                    </nz-form-item>
-                    <nz-form-item>
-                        <nz-form-control nzHasFeedback
-                                         [nzErrorTip]="errorTpl">
-                            <nz-form-label nzRequired
-                                           nzFor="surname">Soyadınız
-                            </nz-form-label>
-                            <input type="text"
-                                   nz-input
-                                   placeholder="Soyadınız"
-                                   formControlName="surname" />
-                        </nz-form-control>
-                    </nz-form-item>
-                    <nz-form-item>
-                        <nz-form-control nzHasFeedback
-                                         [nzErrorTip]="errorTpl">
-                            <nz-form-label nzRequired
-                                           nzFor="mail">E-mail adresi giriniz
-                            </nz-form-label>
-                            <input type="email"
-                                   nz-input
-                                   placeholder="E-mail"
-                                   formControlName="mail" />
-                        </nz-form-control>
-                    </nz-form-item>
-                    <nz-form-item>
-                        <nz-form-control nzHasFeedback
-                                         [nzErrorTip]="errorTpl">
-                            <nz-form-label nzRequired
-                                           nzFor="password">Bir şifre belirleyiniz
-                            </nz-form-label>
-                            <input type="password"
-                                   nz-input
-                                   placeholder="Şifre"
-                                   formControlName="password" />
-                        </nz-form-control>
-                    </nz-form-item>
-                </div>
-                <button nz-button
-                        type="submit"
-                        nz-size="large"
-                        style="margin-bottom: 20px;">Kayıt Ol</button>
-            </form>
-            <span>Zaten üye misin ?<a [routerLink]="['/login']"> Giriş Yap</a></span>
-        </nz-card>
-    </div>
+    <nz-spin [nzSpinning]="isLoading"
+             nzTip="Kayıt Olunuyor...">
+        <div class="register-area">
+            <nz-card>
+                <h2>Yeni Hesap Oluştur</h2>
+                <form nz-form
+                      nzLayout="vertical"
+                      [formGroup]="registerForm"
+                      (ngSubmit)="onSubmit()">
+                    <div>
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback
+                                             [nzErrorTip]="errorTpl">
+                                <nz-form-label nzRequired
+                                               nzFor="name">Adınız
+                                </nz-form-label>
+                                <input type="text"
+                                       nz-input
+                                       placeholder="Adınız"
+                                       formControlName="name" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback
+                                             [nzErrorTip]="errorTpl">
+                                <nz-form-label nzRequired
+                                               nzFor="surname">Soyadınız
+                                </nz-form-label>
+                                <input type="text"
+                                       nz-input
+                                       placeholder="Soyadınız"
+                                       formControlName="surname" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback
+                                             [nzErrorTip]="errorTpl">
+                                <nz-form-label nzRequired
+                                               nzFor="mail">E-mail adresi giriniz
+                                </nz-form-label>
+                                <input type="email"
+                                       nz-input
+                                       placeholder="E-mail"
+                                       formControlName="mail" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback
+                                             [nzErrorTip]="errorTpl">
+                                <nz-form-label nzRequired
+                                               nzFor="password">Bir şifre belirleyiniz
+                                </nz-form-label>
+                                <input type="password"
+                                       nz-input
+                                       placeholder="Şifre"
+                                       formControlName="password" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <button nz-button
+                            type="submit"
+                            nz-size="large"
+                            style="margin-bottom: 20px;">Kayıt Ol</button>
+                </form>
+                <span>Zaten üye misin ?<a [routerLink]="['/login']"> Giriş Yap</a></span>
+            </nz-card>
+        </div>
+    </nz-spin>
 </div>
 
 <ng-template #errorTpl
