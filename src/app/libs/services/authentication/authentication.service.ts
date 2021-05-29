@@ -36,7 +36,7 @@ export class AuthenticationService {
         })
     }
 
-    signUp(userCredential: Person, password: string) {
+    register(userCredential: Person, password: string) {
         this.angularFireAuth.createUserWithEmailAndPassword(userCredential.mail, password)
             .then(res => {
                 this.notificationService.success("Başarılı", "Kayıt olma işleminiz başarı ile tamamladı.", { nzPlacement: "bottomRight" });
@@ -50,7 +50,7 @@ export class AuthenticationService {
             });
     }
 
-    signIn(mail: string, password: string) {
+    login(mail: string, password: string) {
         this.angularFireAuth.signInWithEmailAndPassword(mail, password)
             .then(() => {
                 this.notificationService.success("Başarılı", "Başarıyla giriş yapıldı. Yönlendiriliyorsunuz...", { nzPlacement: "bottomRight" });
@@ -67,7 +67,10 @@ export class AuthenticationService {
     resetPassword(mail: string) {
         this.angularFireAuth.sendPasswordResetEmail(mail)
             .then(() => {
-                this.notificationService.success("Başarılı!", "Şifre sıfırlama linkiniz mail adresinize gönderilmiştir.", { nzPlacement: "bottomRight" })
+                this.notificationService.success("Başarılı!", "Şifre sıfırlama linkiniz mail adresinize gönderilmiştir.", { nzPlacement: "bottomRight" });
+                this.ngZone.run(() => {
+                    this.router.navigate(['/login']);
+                });
             })
             .catch(error => {
                 this.notificationService.error("Hata!", "Bir hata oluştu: " + error.message, { nzPlacement: "bottomRight" })
@@ -81,13 +84,13 @@ export class AuthenticationService {
 
     setUserData(person, userCredential: Person) {
         const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(`users/${person.uid}`);
-        const userData: Person = person;
+        const userData: Person = userCredential;
         return userRef.set(userData, {
             merge: true
-        })
+        });
     }
 
-    signOut() {
+    logOut() {
         return this.angularFireAuth.signOut().then(() => {
             localStorage.removeItem('person');
             this.ngZone.run(() => {

@@ -1,7 +1,7 @@
 // Angular
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Ng Zorro
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
@@ -9,6 +9,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 // Components
 import { HeaderComponent } from './header/header.component';
@@ -35,9 +36,11 @@ import { ResetPasswordComponent } from './authentication/reset-password/reset-pa
     NzCardModule,
     NzButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     NzInputModule,
     NzIconModule,
-    RouterModule
+    RouterModule,
+    NzFormModule
   ],
   exports: [
     HeaderComponent

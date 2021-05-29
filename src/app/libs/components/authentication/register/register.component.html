@@ -18,32 +18,73 @@
     <div class="register-area">
         <nz-card>
             <h2>Yeni Hesap Oluştur</h2>
-            <form>
+            <form nz-form
+                  nzLayout="vertical"
+                  [formGroup]="registerForm"
+                  (ngSubmit)="onSubmit()">
                 <div>
-                    <input type="text"
-                           nz-input
-                           placeholder="Adınız" />
-                    <input type="text"
-                           nz-input
-                           placeholder="Soyadınız" />
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback
+                                         [nzErrorTip]="errorTpl">
+                            <nz-form-label nzRequired
+                                           nzFor="name">Adınız
+                            </nz-form-label>
+                            <input type="text"
+                                   nz-input
+                                   placeholder="Adınız"
+                                   formControlName="name" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback
+                                         [nzErrorTip]="errorTpl">
+                            <nz-form-label nzRequired
+                                           nzFor="surname">Soyadınız
+                            </nz-form-label>
+                            <input type="text"
+                                   nz-input
+                                   placeholder="Soyadınız"
+                                   formControlName="surname" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback
+                                         [nzErrorTip]="errorTpl">
+                            <nz-form-label nzRequired
+                                           nzFor="mail">E-mail adresi giriniz
+                            </nz-form-label>
+                            <input type="email"
+                                   nz-input
+                                   placeholder="E-mail"
+                                   formControlName="mail" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback
+                                         [nzErrorTip]="errorTpl">
+                            <nz-form-label nzRequired
+                                           nzFor="password">Bir şifre belirleyiniz
+                            </nz-form-label>
+                            <input type="password"
+                                   nz-input
+                                   placeholder="Şifre"
+                                   formControlName="password" />
+                        </nz-form-control>
+                    </nz-form-item>
                 </div>
-                <input type="text"
-                       nz-input
-                       placeholder="Kullanıcı Adı" />
-                <input type="text"
-                       nz-input
-                       placeholder="E-mail" />
-                <input type="text"
-                       nz-input
-                       placeholder="Şifre" />
-                <input type="text"
-                       nz-input
-                       placeholder="Şifrenizi Doğrulayın" />
                 <button nz-button
+                        type="submit"
                         nz-size="large"
                         style="margin-bottom: 20px;">Kayıt Ol</button>
-                <span>Zaten üye misin ?<a [routerLink]="['/login']"> Giriş Yap</a></span>
             </form>
+            <span>Zaten üye misin ?<a [routerLink]="['/login']"> Giriş Yap</a></span>
         </nz-card>
     </div>
 </div>
+
+<ng-template #errorTpl
+             let-control>
+    <ng-container *ngIf="control.hasError('required')">
+        Bu alanın doldurulması zorunludur!
+    </ng-container>
+</ng-template>

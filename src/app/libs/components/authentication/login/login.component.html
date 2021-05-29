@@ -18,17 +18,38 @@
     <div class="login-area">
         <nz-card>
             <h2 style="margin-bottom: 50px;">Giriş Yap</h2>
-            <form>
-                <nz-input-group [nzPrefix]="prefixTemplateMail">
-                    <input type="text"
-                           nz-input
-                           placeholder="E-mail" />
-                </nz-input-group>
-                <nz-input-group [nzPrefix]="prefixTemplatePassword">
-                    <input type="text"
-                           nz-input
-                           placeholder="Şifre" />
-                </nz-input-group>
+            <form nz-form
+                  nzLayout="vertical"
+                  [formGroup]="loginForm"
+                  (ngSubmit)="onSubmit()">
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback
+                                     [nzErrorTip]="errorTpl">
+                        <nz-form-label nzRequired
+                                       nzFor="mail">Mail Adresiniz
+                        </nz-form-label>
+                        <nz-input-group [nzPrefix]="prefixTemplateMail">
+                            <input type="email"
+                                   nz-input
+                                   placeholder="E-mail"
+                                   formControlName="mail" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback
+                                     [nzErrorTip]="errorTpl">
+                        <nz-form-label nzRequired
+                                       nzFor="name">Şifreniz
+                        </nz-form-label>
+                        <nz-input-group [nzPrefix]="prefixTemplateMail">
+                            <input type="password"
+                                   nz-input
+                                   placeholder="Şifreniz"
+                                   formControlName="password" />
+                        </nz-input-group>
+                    </nz-form-control>
+                </nz-form-item>
                 <div class="additional-routes">
                     <div>
                         <span>Hala üye değil misin?</span><br>
@@ -39,6 +60,7 @@
                     </div>
                 </div>
                 <button nz-button
+                        type="submit"
                         nz-size="large"
                         style="margin-bottom: 20px;">Giriş Yap</button>
                 <span style="margin: 20px 0px;">Veya</span>
@@ -71,4 +93,11 @@
     <i nz-icon
        nzType="lock"
        nzTheme="outline"></i>
+</ng-template>
+
+<ng-template #errorTpl
+             let-control>
+    <ng-container *ngIf="control.hasError('required')">
+        Bu alanın doldurulması zorunludur!
+    </ng-container>
 </ng-template>

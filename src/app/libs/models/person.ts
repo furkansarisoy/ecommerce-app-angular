@@ -8,6 +8,7 @@ export interface Person {
     isAdmin: boolean;
     name: string;
     surname: string;
+    gender?: string;
     mail: string;
     profileImage?: string;
     addresses?: Address[];

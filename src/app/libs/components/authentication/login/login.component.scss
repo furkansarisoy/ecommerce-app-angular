@@ -31,7 +31,6 @@
         text-align: center;
         padding: 40px 20px;
         width: 400px;
-        height: 500px;
     }
     .additional-routes {
         display: flex;
@@ -67,5 +66,15 @@
         background-color: #55acee;
         color: white;
         padding: 5px 0px;
+    }
+}
+
+form {
+    text-align: start;
+    nz-form-item {
+        margin-bottom: 0px;
+        ::ng-deep .ant-form-item-children-icon {
+            top: 55%;
+        }
     }
 }

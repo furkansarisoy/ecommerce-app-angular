@@ -32,7 +32,6 @@
         text-align: center;
         padding: 10px 20px;
         width: 400px;
-        height: 540px;
     }
     input {
         margin-bottom: 20px;
@@ -47,5 +46,14 @@
     }
     a {
         color: var(--green-color);
+    }
+    form {
+        text-align: start;
+        nz-form-item {
+            margin-bottom: 0px;
+            ::ng-deep .ant-form-item-children-icon {
+                top: 55%;
+            }
+        }
     }
 }
