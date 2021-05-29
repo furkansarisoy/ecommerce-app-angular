@@ -1,0 +1,26 @@
+<i [nzDropdownMenu]="menu"
+   nz-dropdown
+   nzTrigger="click"
+   nz-icon
+   nzType="user"
+   nzTheme="outline"></i>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu
+        nzSelectable>
+        <li nz-menu-item
+            (click)="onLogOutClick()">
+            <i nz-icon
+               nzType="setting"
+               nzTheme="outline"></i>
+            Profil Ayarları
+        </li>
+        <li nz-menu-item
+            (click)="onLogOutClick()">
+            <i nz-icon
+               nzType="poweroff"
+               nzTheme="outline"></i>
+            Çıkış Yap
+        </li>
+    </ul>
+</nz-dropdown-menu>
