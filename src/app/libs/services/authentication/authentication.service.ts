@@ -1,8 +1,8 @@
 import { Injectable, NgZone } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument, DocumentSnapshot } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Person } from '../../models/person';
 
@@ -108,6 +108,12 @@ export class AuthenticationService {
         });
     }
 
+    getActivePersonCredentialsById(uid: string) {
+        if (uid) {
+            return this.angularFirestore.collection<Person>('users').doc(uid).valueChanges();
+        }
+    }
+
     get isLoggedIn() {
         let isLoggedIn;
         this.angularFireAuth.authState.subscribe(person => {
@@ -119,5 +125,6 @@ export class AuthenticationService {
         });
         return isLoggedIn;
     }
+
 
 }
