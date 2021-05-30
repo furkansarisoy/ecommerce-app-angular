@@ -16,6 +16,7 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 // Components
 import { HeaderComponent } from './header/header.component';
@@ -28,6 +29,11 @@ import { ResetPasswordComponent } from './authentication/reset-password/reset-pa
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './header/cart/cart.component';
 import { UserDropdownComponent } from './header/user-dropdown/user-dropdown.component';
+import { ConfirmCartComponent } from './buying-process/confirm-cart/confirm-cart.component';
+import { ShipmentComponent } from './buying-process/shipment/shipment.component';
+import { OrderSummaryComponent } from './buying-process/order-summary/order-summary.component';
+import { PaymentComponent } from './buying-process/payment/payment.component';
+import { PaymentPaginatorComponent } from './buying-process/payment-paginator/payment-paginator.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +45,12 @@ import { UserDropdownComponent } from './header/user-dropdown/user-dropdown.comp
     ResetPasswordComponent,
     ProductDetailComponent,
     CartComponent,
-    UserDropdownComponent
+    UserDropdownComponent,
+    ConfirmCartComponent,
+    ShipmentComponent,
+    OrderSummaryComponent,
+    PaymentComponent,
+    PaymentPaginatorComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +68,8 @@ import { UserDropdownComponent } from './header/user-dropdown/user-dropdown.comp
     NzBadgeModule,
     NzDropDownModule,
     NzToolTipModule,
-    NzSpinModule
+    NzSpinModule,
+    NzTableModule
   ],
   exports: [
     HeaderComponent

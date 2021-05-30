@@ -1,0 +1,32 @@
+.confirm-cart-section {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px;
+    nz-table {
+        width: 100%;
+        margin-right: 25px;
+        align-items: center;
+    }
+
+    .order-operation-wrapper {
+        .confirm-cart-button {
+            width: 100%;
+            margin-top: 20px;
+            color: white;
+            background-color: var(--green-color);
+            border: none;
+            border-radius: 7px;
+        }
+        .back-to-shopping-button {
+            width: 100%;
+            border-radius: 7px;
+            margin-top: 20px;
+        }
+    }
+}
+
+.remove-icon {
+    text-align: end;
+    cursor: pointer;
+}

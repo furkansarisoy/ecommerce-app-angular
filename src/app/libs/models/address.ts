@@ -1,3 +1,7 @@
 export interface Address {
-    //TODO: Add Address interface.
+    id?: string;
+    fullName: string;
+    mail: string;
+    phone: string;
+    fullAddress: string;
 }

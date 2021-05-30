@@ -37,7 +37,8 @@
         </div>
         <div *ngIf="items?.length; else noItemTmp"
              class="confirm-cart">
-            <button nz-button>Sepeti Onayla</button>
+            <button nz-button
+                    (click)="onCartConfirm()">Sepeti Onayla</button>
         </div>
     </div>
 </nz-dropdown-menu>

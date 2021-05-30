@@ -1,0 +1,24 @@
+.order-summary {
+    .total {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold !important;
+        align-items: center;
+        h2 {
+            font-weight: bold;
+        }
+    }
+    .fees {
+        padding: 10px 40px;
+        div {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    width: 400px;
+    padding: 20px;
+    background-color: #eee;
+}
+hr {
+    border-color: gray;
+}

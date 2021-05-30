@@ -1,0 +1,59 @@
+<app-payment-paginator [activePage]="'cart'"></app-payment-paginator>
+
+<section class="confirm-cart-section">
+    <nz-table #basicTable
+              [nzData]="cart"
+              [nzShowPagination]="false">
+        <thead>
+            <tr>
+                <th>Ürün</th>
+                <th>Fiyat</th>
+                <th>Adet</th>
+                <th>Toplam</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cart">
+                <td style="display: flex;">
+                    <img [src]="checkPreviewImage(item.product)"
+                         width="60px"
+                         style="margin-right: 15px;">
+                    <div>
+                        <h3> {{item.product.title}} </h3>
+                        <p style="margin-bottom: 0px;">Renk: {{item.color}}</p>
+                        <p>Beden: {{item.size}} </p>
+                    </div>
+                </td>
+                <td>
+                    ₺{{item.product.price}}
+                </td>
+                <td>
+                    {{item.count}}
+                </td>
+                <td>
+                    ₺{{item.product.price * item.count}}
+                </td>
+                <td style="width:5px">
+                    <div class="remove-icon"
+                         nz-tooltip
+                         nzTooltipTitle="Ürünü Sepetimden Çıkart"
+                         (click)="removeItemFormCart(item)">
+                        <i nz-icon
+                           nzType="delete"
+                           nzTheme="outline"></i>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+    <div class="order-operation-wrapper">
+        <app-order-summary></app-order-summary>
+        <button class="confirm-cart-button"
+                nz-button
+                (click)="onCartConfirm()">Sepeti Onayla</button>
+        <button class="back-to-shopping-button"
+                nz-button
+                (click)="onBackToShopping()">Alışverişe Geri Dön</button>
+    </div>
+</section>

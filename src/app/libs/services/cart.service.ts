@@ -35,4 +35,13 @@ export class CartService {
         return JSON.parse(localStorage.getItem('cart'));
     }
 
+    get Subtotal() {
+        let cart = this.getCart();
+        let subtotal = 0;
+        cart?.forEach(cartItem => {
+            subtotal = subtotal + (cartItem.count * cartItem.product.price);
+        });
+        return subtotal;
+    }
+
 }

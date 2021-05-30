@@ -13,6 +13,10 @@ import { LoginComponent } from '../../components/authentication/login/login.comp
 import { RegisterComponent } from '../../components/authentication/register/register.component';
 import { ResetPasswordComponent } from '../../components/authentication/reset-password/reset-password.component';
 import { ProductDetailComponent } from '../../components/product-detail/product-detail.component';
+import { AuthenticationGuard } from '../../services/authentication/authentication.guard';
+import { ConfirmCartComponent } from '../../components/buying-process/confirm-cart/confirm-cart.component';
+import { ShipmentComponent } from '../../components/buying-process/shipment/shipment.component';
+import { PaymentComponent } from '../../components/buying-process/payment/payment.component';
 
 const routes: Routes = [
   {
@@ -37,6 +41,15 @@ const routes: Routes = [
       },
       {
         path: 'product/:id', component: ProductDetailComponent
+      },
+      {
+        path: 'confirm-cart', component: ConfirmCartComponent
+      },
+      {
+        path: 'shipment', component: ShipmentComponent
+      },
+      {
+        path: 'payment', component: PaymentComponent
       }
     ]
   }

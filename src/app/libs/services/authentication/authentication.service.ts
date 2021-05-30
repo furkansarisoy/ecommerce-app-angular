@@ -42,6 +42,7 @@ export class AuthenticationService {
                     this.router.navigate(['/homepage']);
                 });
                 this.isLoading.next(false);
+                localStorage.clear();
             })
             .catch(error => {
                 this.notificationService.error("Hata", "Kayıt olma işlemi sırasında bir hata oluştu:" + error.message, { nzPlacement: "bottomRight" });
@@ -57,6 +58,7 @@ export class AuthenticationService {
                     this.router.navigate(['/homepage']);
                 });
                 this.isLoading.next(false);
+                localStorage.clear();
             })
             .catch(error => {
                 this.notificationService.error("Hata", "Giriş yapma işlemi sırasında bir hata oluştu:" + error.message, { nzPlacement: "bottomRight" });
@@ -94,7 +96,20 @@ export class AuthenticationService {
                 this.router.navigate(['/homepage']);
             });
             this.notificationService.success('Oturum Kapatıldı', 'Oturumunuz güvenli bir şekilde sonlandırıldı.', { nzPlacement: "bottomRight" });
-        })
+            localStorage.clear();
+        });
+    }
+
+    get isLoggedIn() {
+        let isLoggedIn;
+        this.angularFireAuth.authState.subscribe(person => {
+            if (person) {
+                isLoggedIn = true;
+            } else {
+                isLoggedIn = false;
+            }
+        });
+        return isLoggedIn;
     }
 
 }

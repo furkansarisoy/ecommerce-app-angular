@@ -1,0 +1,29 @@
+.confirm-shipment-section {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 20px;
+
+    .new-address-form {
+        width: 100%;
+        margin-right: 20px;
+        padding: 0px 100px;
+    }
+
+    .order-operation-wrapper {
+        margin: 30px 50px 0px 0px;
+        .confirm-shipment-button {
+            width: 100%;
+            margin-top: 20px;
+            color: white;
+            background-color: var(--green-color);
+            border: none;
+            border-radius: 7px;
+        }
+        .back-to-cart-button {
+            width: 100%;
+            border-radius: 7px;
+            margin-top: 20px;
+        }
+    }
+}

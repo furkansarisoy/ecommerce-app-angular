@@ -5,37 +5,41 @@ import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/libs/services/cart.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  selector: 'app-confirm-cart',
+  templateUrl: './confirm-cart.component.html',
+  styleUrls: ['./confirm-cart.component.scss']
 })
-export class CartComponent implements OnInit, OnDestroy {
+export class ConfirmCartComponent implements OnInit, OnDestroy {
 
-  items: any[];
+  cart = [];
   subscription: Subscription;
+
   constructor(
     private cartService: CartService,
-    private router: Router,
-    private nzNotificationService: NzNotificationService) { }
+    private nzNotificationService: NzNotificationService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.subscription = this.cartService.watchStorage().subscribe(store => {
-      this.getCart();
+      this.getProductsFromCart();
     });
-    this.getCart();
+    this.getProductsFromCart();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  getCart() {
-    this.items = this.cartService.getCart();
+  getProductsFromCart() {
+    if (this.cartService.getCart()) {
+      this.cart = [...this.cartService.getCart()];
+    }
   }
 
   removeItemFormCart(item) {
     this.cartService.deleteFromCart(item.id);
-    this.getCart();
+    this.getProductsFromCart();
     this.nzNotificationService.success('Ürün Sepetten Çıkarıldı', `${item.product.title} isimli ürün sepetten çıkarıldı`, { nzPlacement: 'bottomRight' });
   }
 
@@ -43,12 +47,12 @@ export class CartComponent implements OnInit, OnDestroy {
     return item?.previewImageUrls?.length ? item.previewImageUrls[0] : '';
   }
 
-  onProductClick(product) {
-    this.router.navigate([`/product/${product.product.id}`])
+  onCartConfirm() {
+    this.router.navigate(['/shipment']);
   }
 
-  onCartConfirm() {
-    this.router.navigate(['/confirm-cart']);
+  onBackToShopping() {
+    this.router.navigate(['/homepage']);
   }
 
 }
