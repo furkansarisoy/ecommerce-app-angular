@@ -2,7 +2,7 @@ import { Address } from "./address";
 import { Product } from "./product";
 
 export interface Order {
-    id: string;
+    id?: string;
     uid: string;
     address: Address;
     state: OrderState;
@@ -14,6 +14,8 @@ export interface Order {
 export interface OrderedProduct {
     product: Product;
     count: number;
+    size: string;
+    color: string;
 }
 
 export enum OrderState {

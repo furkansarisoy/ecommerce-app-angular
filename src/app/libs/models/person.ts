@@ -16,5 +16,4 @@ export interface Person {
     orders?: Order[];
     favorites?: Product[];
     personalizedTags?: string[];
-    cart?: Product[];
 }

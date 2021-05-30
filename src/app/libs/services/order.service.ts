@@ -2,14 +2,18 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Order } from '../models/order';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
     providedIn: 'root'
 })
 export class OrderService {
 
-    constructor(private angularFirestore: AngularFirestore,
-        private nzNotificationService: NzNotificationService) { }
+    constructor(
+        private angularFirestore: AngularFirestore,
+        private angularFireAuth: AngularFireAuth,
+        private nzNotificationService: NzNotificationService
+    ) { }
 
     getOrders() {
         return this.angularFirestore.collection<Order>('orders').valueChanges();
@@ -27,22 +31,34 @@ export class OrderService {
         const orderRef = this.angularFirestore.doc(`orders/${orderId}`);
         return orderRef.update(orderData)
             .then(() => {
-                this.nzNotificationService.success("Başarılı!", "Ürün başarılı bir şekilde güncellendi", { nzPlacement: 'bottomRight' });
-            }).catch(error => this.nzNotificationService.error("Hata!", "Ürün güncellenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
+                this.nzNotificationService.success("Başarılı!", "Sipariş başarılı bir şekilde güncellendi", { nzPlacement: 'bottomRight' });
+            }).catch(error => this.nzNotificationService.error("Hata!", "Sipariş güncellenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
     }
 
     createOrder(order: Order) {
-        const id = this.angularFirestore.createId();
-        const orderRef = this.angularFirestore.doc(`orders/${id}`);
-        const orderData = {
-            id: id,
-            ...order
-        };
+        order.id = this.angularFirestore.createId();
+        const orderRef = this.angularFirestore.doc(`orders/${order.id}`);
+        const orderData = order;
         return orderRef.set(orderData, {
             merge: true
         }).then(() => {
-            this.nzNotificationService.success("Başarılı!", "Yeni ürün başarılı bir şekilde eklendi", { nzPlacement: 'bottomRight' });
-        }).catch(error => this.nzNotificationService.error("Hata!", "Yeni ürün eklenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
+            this.setOrderIdToUserData(order);
+        })
+            .catch(error => this.nzNotificationService.error("Hata!", "Yeni sipariş eklenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
+    }
+
+    setOrderIdToUserData(order: Order) {
+        const userRef = this.angularFirestore.collection('users').doc(order.uid);
+        let person;
+        userRef.get().subscribe(res => {
+            person = res.data();
+            userRef.update({
+                orders: [
+                    ...person.orders,
+                    order.id
+                ]
+            });
+        });
     }
 
 }

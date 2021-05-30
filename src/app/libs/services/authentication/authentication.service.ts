@@ -84,7 +84,15 @@ export class AuthenticationService {
 
     setUserData(person, userCredential: Person) {
         const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(`users/${person.uid}`);
-        const userData: Person = userCredential;
+        const userData: Person = {
+            ...userCredential,
+            isAdmin: false,
+            favorites: [],
+            orders: [],
+            addresses: [],
+            cards: [],
+            personalizedTags: []
+        };
         return userRef.set(userData, {
             merge: true
         });

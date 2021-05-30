@@ -1,44 +1,59 @@
-<app-payment-paginator [activePage]="'payment'"></app-payment-paginator>
-<section class="confirm-shipment-section">
+<ng-container *ngIf="!isOrderDone">
+    <app-payment-paginator [activePage]="'payment'"></app-payment-paginator>
+    <section class="confirm-shipment-section">
 
-    <div style="width: 100%; display: flex;">
-        <button class="confirm-shipment-button"
-                nz-button
-                (click)="onPaymentConfirm()">Ödemeyi Onayla</button>
-        <button class="back-to-cart-button"
-                nz-button
-                (click)="onBackToShipment()">Adres Bilgilerine Geri Dön</button>
-    </div>
-
-    <div class="order-operation-wrapper">
-        <app-order-summary></app-order-summary>
-        <div class="shipment-information">
-            <h2>Teslimat Bilgileri</h2>
-            <hr />
-            <p>
-                <i nz-icon
-                   nzType="user"
-                   nzTheme="outline"></i>
-                {{activeAddress.fullName}}
-            </p>
-            <p>
-                <i nz-icon
-                   nzType="mail"
-                   nzTheme="outline"></i>
-                {{activeAddress.mail}}
-            </p>
-            <p>
-                <i nz-icon
-                   nzType="phone"
-                   nzTheme="outline"></i>
-                {{activeAddress.phone}}
-            </p>
-            <p>
-                <i nz-icon
-                   nzType="home"
-                   nzTheme="outline"></i>
-                {{activeAddress.fullAddress}}
-            </p>
+        <div style="width: 100%; display: flex;">
+            <button class="confirm-shipment-button"
+                    nz-button
+                    (click)="onPaymentConfirm()">Ödemeyi Onayla</button>
+            <button class="back-to-cart-button"
+                    nz-button
+                    (click)="onBackToShipment()">Adres Bilgilerine Geri Dön</button>
         </div>
-    </div>
-</section>
+
+        <div class="order-operation-wrapper">
+            <app-order-summary></app-order-summary>
+            <div class="shipment-information">
+                <h2>Teslimat Bilgileri</h2>
+                <hr />
+                <p>
+                    <i nz-icon
+                       nzType="user"
+                       nzTheme="outline"></i>
+                    {{activeAddress.fullName}}
+                </p>
+                <p>
+                    <i nz-icon
+                       nzType="mail"
+                       nzTheme="outline"></i>
+                    {{activeAddress.mail}}
+                </p>
+                <p>
+                    <i nz-icon
+                       nzType="phone"
+                       nzTheme="outline"></i>
+                    {{activeAddress.phone}}
+                </p>
+                <p>
+                    <i nz-icon
+                       nzType="home"
+                       nzTheme="outline"></i>
+                    {{activeAddress.fullAddress}}
+                </p>
+            </div>
+        </div>
+    </section>
+</ng-container>
+
+<ng-container *ngIf="isOrderDone">
+    <nz-result nzStatus="success"
+               nzTitle="Siparişiniz Verildi!"
+               [nzSubTitle]="'Sipariş Numaranız: TODO' ">
+        <div nz-result-extra>
+            <button class="confirm-shipment-button"
+                    style="width: 20%;"
+                    nz-button
+                    (click)="onBackToShopping()">Alışverişe Devam Et</button>
+        </div>
+    </nz-result>
+</ng-container>
