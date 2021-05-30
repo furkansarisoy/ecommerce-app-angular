@@ -44,4 +44,8 @@ export class CartService {
         return subtotal;
     }
 
+    get StorageSub() {
+        return this.storageSub;
+    }
+
 }

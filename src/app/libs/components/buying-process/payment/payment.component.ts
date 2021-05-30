@@ -23,7 +23,7 @@ export class PaymentComponent implements OnInit {
     private router: Router,
     private addressService: AddressService,
     private orderService: OrderService,
-    private cartSerice: CartService,
+    private cartService: CartService,
     private authService: AuthenticationService,
     private angularFireAuth: AngularFireAuth
   ) { }
@@ -35,10 +35,10 @@ export class PaymentComponent implements OnInit {
   }
 
   onPaymentConfirm() {
-    if (this.cartSerice.getCart() && this.addressService.getActiveAddress()) {
-      const cart = this.cartSerice.getCart();
+    if (this.cartService.getCart() && this.addressService.getActiveAddress()) {
+      const cart = this.cartService.getCart();
       const address = this.addressService.getActiveAddress();
-      const subtotal = this.cartSerice.Subtotal;
+      const subtotal = this.cartService.Subtotal;
       const order: Order = {
         uid: this.activePersonId,
         address: address,
@@ -50,6 +50,7 @@ export class PaymentComponent implements OnInit {
       this.orderService.createOrder(order);
       this.isOrderDone = true;
       localStorage.clear();
+      this.cartService.StorageSub.next('sipariş tamamlandı');
     } else {
       console.log('somethin went wrong :(');
     }

@@ -48,17 +48,19 @@ export class OrderService {
     }
 
     setOrderIdToUserData(order: Order) {
-        const userRef = this.angularFirestore.collection('users').doc(order.uid);
-        let person;
-        userRef.get().subscribe(res => {
-            person = res.data();
-            userRef.update({
-                orders: [
-                    ...person.orders,
-                    order.id
-                ]
+        if (order.uid) {
+            const userRef = this.angularFirestore.collection('users').doc(order.uid);
+            let person;
+            userRef.get().subscribe(res => {
+                person = res.data();
+                userRef.update({
+                    orders: [
+                        ...person.orders,
+                        order.id
+                    ]
+                });
             });
-        });
+        }
     }
 
 }
