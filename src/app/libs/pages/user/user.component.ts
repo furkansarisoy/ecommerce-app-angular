@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderType } from '../../components/header/header.component';
 
 @Component({
   selector: 'app-user',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+
+  headerType = HeaderType.User;
 
   constructor() { }
 

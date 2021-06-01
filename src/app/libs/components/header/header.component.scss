@@ -65,14 +65,30 @@
             }
         }
     }
+    .cart-user {
+        display: flex;
+        justify-content: space-between;
+        width: 75px;
+        ::ng-deep svg {
+            font-size: 25px;
+            cursor: pointer;
+        }
+    }
 }
 
-.cart-user {
+.navigation-bar-admin {
+    background-color: white;
     display: flex;
-    justify-content: space-between;
-    width: 75px;
-    ::ng-deep svg {
-        font-size: 25px;
-        cursor: pointer;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 25px;
+    .user {
+        margin-right: 25px;
+        width: 75px;
+        text-align: end;
+        ::ng-deep svg {
+            font-size: 25px;
+            cursor: pointer;
+        }
     }
 }

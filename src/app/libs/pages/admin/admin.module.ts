@@ -3,9 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Ng zorro modules
-import { ComponentsModule } from '../../components/components.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 // Component imports
+import { ComponentsModule } from '../../components/components.module';
 import { AdminComponent } from './admin.component';
 
 const routes: Routes = [
@@ -22,7 +25,10 @@ const routes: Routes = [
     ],
     imports: [
         RouterModule.forChild(routes),
-        ComponentsModule
+        ComponentsModule,
+        NzLayoutModule,
+        NzMenuModule,
+        NzIconModule
     ],
     exports: [
         AdminComponent

@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 
+export enum HeaderType {
+  User = 'user',
+  Admin = 'admin'
+}
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @Input() type: HeaderType;
 
   menuItems = [
     {
@@ -28,6 +34,8 @@ export class HeaderComponent implements OnInit {
       url: 'categories'
     },
   ];
+
+  HeaderType = HeaderType;
 
   activePerson;
 

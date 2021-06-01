@@ -1,0 +1,44 @@
+nz-sider {
+    background-color: #2e313b;
+
+    .brand {
+        padding: 20px;
+        .brand-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-image: url("../../../../assets/logo.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+    }
+
+    .menu {
+        background-color: #2e313b;
+        color: #838790;
+        font-size: 18px;
+        border: none;
+        padding: 0px;
+        ::ng-deep {
+            svg {
+                font-size: 25px;
+            }
+            .ant-menu-item-selected {
+                background-color: transparent;
+                color: white;
+                border: none;
+                &::after {
+                    border-color: white;
+                }
+            }
+        }
+        li {
+            display: flex;
+            align-items: center;
+            margin: 20px 0px;
+            &:hover {
+                color: white;
+            }
+        }
+    }
+}

@@ -18,6 +18,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 
 // Components
 import { HeaderComponent } from './header/header.component';
@@ -71,7 +72,8 @@ import { PaymentPaginatorComponent } from './buying-process/payment-paginator/pa
     NzToolTipModule,
     NzSpinModule,
     NzTableModule,
-    NzResultModule
+    NzResultModule,
+    NzLayoutModule
   ],
   exports: [
     HeaderComponent
