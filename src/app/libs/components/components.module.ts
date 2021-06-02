@@ -36,6 +36,9 @@ import { ShipmentComponent } from './buying-process/shipment/shipment.component'
 import { OrderSummaryComponent } from './buying-process/order-summary/order-summary.component';
 import { PaymentComponent } from './buying-process/payment/payment.component';
 import { PaymentPaginatorComponent } from './buying-process/payment-paginator/payment-paginator.component';
+import { ProductsComponent } from './products/products.component';
+import { NewProductComponent } from './products/new-product/new-product.component';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { PaymentPaginatorComponent } from './buying-process/payment-paginator/pa
     ShipmentComponent,
     OrderSummaryComponent,
     PaymentComponent,
-    PaymentPaginatorComponent
+    PaymentPaginatorComponent,
+    ProductsComponent,
+    NewProductComponent,
+    EditProductComponent
   ],
   imports: [
     CommonModule,

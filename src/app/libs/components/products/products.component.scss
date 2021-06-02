@@ -1,0 +1,30 @@
+.products {
+    padding: 40px;
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            text-align: start;
+            h1 {
+                font-weight: bold;
+                font-size: x-large;
+                margin-bottom: 0px;
+            }
+        }
+
+        .add-product-button {
+            button {
+                border-radius: 8px;
+            }
+        }
+    }
+
+    .product-table {
+        margin-top: 25px;
+    }
+}

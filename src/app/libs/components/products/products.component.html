@@ -1,0 +1,46 @@
+<section class="products">
+    <div class="section-header">
+        <div class="title">
+            <h1>
+                Ürünler
+            </h1>
+            <h4> {{today | date}}</h4>
+        </div>
+        <div class="add-product-button">
+            <button nz-button
+                    nzType="primary"
+                    [routerLink]="'/admin/new-product'">
+                <i nz-icon
+                   nzType="plus"
+                   nzTheme="outline"></i>
+                Yeni Ürün Ekle
+            </button>
+        </div>
+    </div>
+
+    <nz-table class="product-table"
+              [nzData]="products">
+        <thead>
+            <tr>
+                <th>Ürün</th>
+                <th>Stok</th>
+                <th>Fiyat</th>
+                <th>Durum</th>
+                <th nzWidth="10px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{product.title}}</td>
+                <td>{{product.stock}}</td>
+                <td>₺{{product.price}}</td>
+                <td> {{product.state}} </td>
+                <td nzWidth="10px">
+                    <button nz-button
+                            nzType="default"
+                            (click)="onEditProductClick(product)">Güncelle</button>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</section>

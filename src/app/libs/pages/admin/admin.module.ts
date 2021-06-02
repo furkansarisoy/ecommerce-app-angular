@@ -10,11 +10,22 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 // Component imports
 import { ComponentsModule } from '../../components/components.module';
 import { AdminComponent } from './admin.component';
+import { ProductsComponent } from '../../components/products/products.component';
+import { EditProductComponent } from '../../components/products/edit-product/edit-product.component';
+import { NewProductComponent } from '../../components/products/new-product/new-product.component';
 
 const routes: Routes = [
     {
         path: '', component: AdminComponent, children: [
-
+            {
+                path: 'products', component: ProductsComponent
+            },
+            {
+                path: 'edit-product/:id', component: EditProductComponent
+            },
+            {
+                path: 'new-product', component: NewProductComponent
+            }
         ]
     }
 ]
