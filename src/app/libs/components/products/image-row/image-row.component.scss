@@ -1,0 +1,18 @@
+.image-row-wrapper {
+    padding: 20px;
+    .image-row {
+        display: flex;
+        align-items: center;
+        padding: 10px 0px;
+        input {
+            margin-right: 5px;
+        }
+        img {
+            margin-right: 10px;
+            border: 1px solid #eee;
+        }
+        .delete-button {
+            cursor: pointer;
+        }
+    }
+}
