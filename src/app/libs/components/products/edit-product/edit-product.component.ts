@@ -42,7 +42,11 @@ export class EditProductComponent implements OnInit, OnDestroy {
         this.product = product[0];
         this.title = `Düzenle: ${product[0].title}`;
       }
-    })
+    });
+  }
+
+  onProductEdit(product: Product) {
+    this.productService.updateProductById(this.productId, product);
   }
 
 }

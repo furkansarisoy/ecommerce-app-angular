@@ -41,4 +41,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.router.navigate([`/admin/edit-product/${product.id}`]);
   }
 
+  checkPreviewImg(product: Product) {
+    if (product?.previewImageUrls) {
+      return product.previewImageUrls[0];
+    } else {
+      return null;
+    }
+  }
+
 }

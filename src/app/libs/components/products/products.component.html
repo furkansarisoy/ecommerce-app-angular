@@ -31,7 +31,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let product of products">
-                <td>{{product.title}}</td>
+                <td style="display: flex; align-items: center;">
+                    <img [src]="checkPreviewImg(product)"
+                         width="60px"
+                         style="margin-right: 5px">
+                    <p style="margin: 0px;">
+                        {{product.title}}
+                    </p>
+                </td>
                 <td>{{product.stock}}</td>
                 <td>₺{{product.price}}</td>
                 <td> {{product.state}} </td>

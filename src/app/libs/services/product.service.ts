@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { CategorizedProduct, Product } from '../models/product';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,9 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 export class ProductService {
 
   constructor(private angularFirestore: AngularFirestore,
-    private nzNotificationService: NzNotificationService) { }
+    private nzNotificationService: NzNotificationService,
+    private router: Router
+  ) { }
 
   getProducts() {
     return this.angularFirestore.collection<Product>('products').valueChanges();
@@ -24,6 +27,7 @@ export class ProductService {
     return productRef.update(productData)
       .then(() => {
         this.nzNotificationService.success("Başarılı!", "Ürün başarılı bir şekilde güncellendi", { nzPlacement: 'bottomRight' });
+        this.router.navigate(['/admin/products']);
       }).catch(error => this.nzNotificationService.error("Hata!", "Ürün güncellenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
   }
 
@@ -38,6 +42,7 @@ export class ProductService {
       merge: true
     }).then(() => {
       this.nzNotificationService.success("Başarılı!", "Yeni ürün başarılı bir şekilde eklendi", { nzPlacement: 'bottomRight' });
+      this.router.navigate(['/admin/products']);
     }).catch(error => this.nzNotificationService.error("Hata!", "Yeni ürün eklenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
   }
 
