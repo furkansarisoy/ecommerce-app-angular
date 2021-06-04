@@ -28,7 +28,7 @@ const routes: Routes = [
         path: 'homepage', component: HomepageComponent
       },
       {
-        path: 'categories', component: CategoriesComponent
+        path: 'categories/:gender', component: CategoriesComponent
       },
       {
         path: 'login', component: LoginComponent

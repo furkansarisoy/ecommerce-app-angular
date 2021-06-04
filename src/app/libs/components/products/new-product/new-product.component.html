@@ -1,2 +1,2 @@
 <app-product-form [title]="title"
-                  [pageType]="type"></app-product-form>
+                  (formSubmit)="onProductCreate($event)"></app-product-form>

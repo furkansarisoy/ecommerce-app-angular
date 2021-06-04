@@ -41,41 +41,8 @@ export class ProductService {
     }).catch(error => this.nzNotificationService.error("Hata!", "Yeni ürün eklenirken bir hata ile karşılaşıldı:" + error, { nzPlacement: 'bottomRight' }));
   }
 
-  categorizeProducts(products: Product[]): CategorizedProduct[] {
-
-    const categories = this.getCategories(products);
-
-    /* categorize products which have any category */
-    const categorizedProducts = categories.map(category => {
-      /* get products of the category */
-      const productsByCategory = products.filter(product => product.category === category);
-      return {
-        category: category,
-        data: productsByCategory
-      };
-    });
-
-    return categorizedProducts;
-  }
-
-  getCategories(products: Product[]): string[] {
-    /* handle when products data is broken or empty array */
-    if (!products) {
-      return null;
-    } else if (!products.length) {
-      return [];
-    }
-
-    /* get categories */
-    const allCategories = products
-      .map(product => {
-        return product.category
-      });
-
-    /* Delete duplicate */
-    const categories = [...new Set(allCategories)];
-
-    return categories;
+  getProductsByGender(gender: string) {
+    return this.angularFirestore.collection<Product>('products', ref => ref.where('gender', '==', gender)).valueChanges();
   }
 
 }

@@ -8,6 +8,8 @@
         </div>
     </div>
 
+    <app-new-category></app-new-category>
+
     <div class="form-area">
         <form nz-form
               [formGroup]="productForm">
@@ -38,7 +40,7 @@
                         <nz-form-label nzRequired>Renkler
                         </nz-form-label>
                         <app-tag-input [value]="data?.colors"
-                                       (ngModelChange)="onColorInputValueChange($event)"></app-tag-input>
+                                       (valueChange)="onColorInputValueChange($event)"></app-tag-input>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
@@ -47,7 +49,7 @@
                                        nzFor="sizes">Bedenler
                         </nz-form-label>
                         <app-tag-input [value]="data?.sizes"
-                                       (ngModelChange)="onSizeInputValueChange($event)"></app-tag-input>
+                                       (valueChange)="onSizeInputValueChange($event)"></app-tag-input>
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
@@ -55,7 +57,7 @@
                         <nz-form-label nzRequired>Tagler
                         </nz-form-label>
                         <app-tag-input [value]="data?.tags"
-                                       (ngModelChange)="onTagInputValueChange($event)"></app-tag-input>
+                                       (valueChange)="onTagInputValueChange($event)"></app-tag-input>
                     </nz-form-control>
                 </nz-form-item>
             </nz-card>
@@ -112,7 +114,8 @@
                 </nz-card>
                 <div class="form-buttons">
                     <button nz-button
-                            nzType="primary">
+                            nzType="primary"
+                            (click)="onFormSubmit()">
                         Kaydet
                     </button>
                     <button nz-button>

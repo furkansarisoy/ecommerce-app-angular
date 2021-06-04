@@ -98,6 +98,9 @@ nz-card {
         .ant-card-cover {
             border: 1px #f5f4f4 solid;
             overflow: hidden;
+            height: 300px;
+            display: flex;
+            align-items: center;
             img {
                 transition: transform 0.5s;
                 transform: scale(1);

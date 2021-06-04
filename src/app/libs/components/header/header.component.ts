@@ -23,16 +23,12 @@ export class HeaderComponent implements OnInit {
     },
     {
       label: 'Kadın',
-      url: 'categories'
+      url: 'categories/female'
     },
     {
       label: 'Erkek',
-      url: 'categories'
-    },
-    {
-      label: 'Saat & Aksesuar',
-      url: 'categories'
-    },
+      url: 'categories/male'
+    }
   ];
 
   HeaderType = HeaderType;

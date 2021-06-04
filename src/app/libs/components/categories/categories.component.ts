@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Subscription } from 'rxjs';
 import { CategorizedProduct, Product } from '../../models/product';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { CategoryService } from '../../services/category.service';
 import { ProductService } from '../../services/product.service';
 
 @Component({
@@ -17,29 +18,41 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   activePersonId: string;
   activePerson;
-  products: CategorizedProduct[];
+  products: Product[];
+  categorizedProducts: Product[];
   categories: string[];
-
-  selectedCategory = 0;
+  genderParam: string;
   subscriptions: Subscription[];
+  isLoading = false;
 
   constructor(
     private productService: ProductService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
     private angularFireAuth: AngularFireAuth,
-    private angularFireStore: AngularFirestore
+    private angularFireStore: AngularFirestore,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
     this.subscriptions = [
-      this.getProductsAndCategories(),
+      this.getParamsFromUrl(),
       this.subscribeToActivePersonId()
     ];
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  getParamsFromUrl() {
+    return this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      this.isLoading = true;
+      this.genderParam = params.get('gender');
+      this.getProductsByGender(this.genderParam);
+      this.getCategoriesByGender(this.genderParam);
+    });
   }
 
   subscribeToActivePersonId() {
@@ -60,15 +73,22 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     });
   }
 
-  getProductsAndCategories() {
-    return this.productService.getProducts().subscribe(products => {
-      this.products = this.productService.categorizeProducts(products);
-      this.categories = this.productService.getCategories(products);
+  getProductsByGender(gender) {
+    return this.productService.getProductsByGender(gender).subscribe(products => {
+      this.products = products;
     });
   }
 
-  onCategoryItemClick(index) {
-    this.selectedCategory = index;
+  getCategoriesByGender(gender) {
+    return this.categoryService.getCategoriesByGender(gender).subscribe(categories => {
+      this.categories = categories;
+      this.isLoading = false;
+      this.filterProductsByCategoryId(this.categories[0]);
+    })
+  }
+
+  filterProductsByCategoryId(category) {
+    this.categorizedProducts = this.products.filter(product => product.category === category.id);
   }
 
   onProductClick(id: string) {

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductFormType } from '../product-form/product-form.component';
+import { Product } from 'src/app/libs/models/product';
+import { CategoryService } from 'src/app/libs/services/category.service';
+import { ProductService } from 'src/app/libs/services/product.service';
+import { SelectOptions } from '../../shared/select/select.component';
 
 @Component({
   selector: 'app-new-product',
@@ -9,10 +12,15 @@ import { ProductFormType } from '../product-form/product-form.component';
 export class NewProductComponent implements OnInit {
 
   title = 'Yeni Ürün Oluştur';
-  type = ProductFormType.Create;
 
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void { }
+
+  onProductCreate(product: Product) {
+    if (product) {
+      this.productService.createProduct(product);
+    }
+  }
 
 }

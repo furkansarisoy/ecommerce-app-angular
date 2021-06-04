@@ -26,6 +26,5 @@ export enum ProductState {
 
 export enum Gender {
     Male = 'male',
-    Female = 'female',
-    Unisex = 'unisex'
+    Female = 'female'
 }

@@ -20,6 +20,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 // Components
 import { HeaderComponent } from './header/header.component';
@@ -44,6 +45,7 @@ import { ImageRowComponent } from './products/image-row/image-row.component';
 import { TagInputComponent } from './shared/tag-input/tag-input.component';
 import { SelectComponent } from './shared/select/select.component';
 import { ProductFormComponent } from './products/product-form/product-form.component';
+import { NewCategoryComponent } from './categories/new-category/new-category.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
     ImageRowComponent,
     TagInputComponent,
     SelectComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    NewCategoryComponent
   ],
   imports: [
     CommonModule,
@@ -89,7 +92,8 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
     NzTableModule,
     NzResultModule,
     NzLayoutModule,
-    NzSelectModule
+    NzSelectModule,
+    NzModalModule
   ],
   exports: [
     HeaderComponent

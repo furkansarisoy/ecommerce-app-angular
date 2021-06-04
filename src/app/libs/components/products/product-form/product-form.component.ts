@@ -1,12 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Product } from 'src/app/libs/models/product';
+import { Product, ProductState } from 'src/app/libs/models/product';
+import { CategoryService } from 'src/app/libs/services/category.service';
 import { SelectOptions } from '../../shared/select/select.component';
-
-export enum ProductFormType {
-  Edit = 'edit',
-  Create = 'create'
-}
 
 @Component({
   selector: 'app-product-form',
@@ -17,16 +13,41 @@ export class ProductFormComponent implements OnInit, OnChanges {
 
   @Input() data: Product;
   @Input() title: string = ' ';
-  @Input() pageType: ProductFormType;
-  @Input() genderOptions: SelectOptions[];
-  @Input() categoryOptions: SelectOptions[];
-  @Input() productStateOptions: SelectOptions[];
+
+  @Output() formSubmit = new EventEmitter<Product>();
 
   date = new Date();
   productForm: FormGroup;
   previewImageUrls = [];
+  categoryOptions: SelectOptions[];
+  genderOptions: SelectOptions[] = [
+    {
+      key: 'Erkek',
+      value: 'male'
+    },
+    {
+      key: 'Kadın',
+      value: 'female'
+    }
+  ];
+  productStateOptions: SelectOptions[] = [
+    {
+      key: 'Aktif',
+      value: ProductState.Active
+    },
+    {
+      key: 'İnaktif',
+      value: ProductState.Deactive
+    },
+    {
+      key: 'Stokta Yok',
+      value: ProductState.OutOfStock
+    }
+  ];
 
-  constructor(private formBuilder: FormBuilder) {
+  selectedGender;
+
+  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService) {
 
   }
 
@@ -35,15 +56,13 @@ export class ProductFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.data) {
-      this.productForm = this.formBuilder.group({
-        'title': [this.data?.title || '', Validators.required],
-        'description': [this.data?.description || '', Validators.required],
-        'price': [this.data?.price || 0, Validators.required]
-      });
-      this.initDefaultFormControls();
-      this.mapData();
-    }
+    this.productForm = this.formBuilder.group({
+      'title': [this.data?.title || '', Validators.required],
+      'description': [this.data?.description || '', Validators.required],
+      'price': [this.data?.price || 0, Validators.required]
+    });
+    this.initDefaultFormControls();
+    this.mapData();
   }
 
   initDefaultFormControls() {
@@ -82,6 +101,8 @@ export class ProductFormComponent implements OnInit, OnChanges {
   }
 
   onSizeInputValueChange(sizes: string[]) {
+    console.log("sizes", sizes);
+
     this.productForm.removeControl('sizes');
     this.productForm.addControl('sizes', new FormControl(sizes, Validators.required));
   }
@@ -89,6 +110,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
   onGenderValueChange(gender: string) {
     this.productForm.removeControl('gender');
     this.productForm.addControl('gender', new FormControl(gender, Validators.required));
+    this.getCategoriesByGender(gender);
   }
 
   onCategoryValueChange(category: string) {
@@ -99,6 +121,29 @@ export class ProductFormComponent implements OnInit, OnChanges {
   onProductStateValueChange(state: string) {
     this.productForm.removeControl('state');
     this.productForm.addControl('state', new FormControl(state, Validators.required));
+  }
+
+  getCategoriesByGender(gender: string) {
+    if (gender) {
+      this.categoryService.getCategoriesByGender(gender).subscribe(categories => {
+        this.categoryOptions = categories.map(category => {
+          return {
+            key: category.name,
+            value: category.id
+          }
+        });
+      });
+    }
+  }
+
+  onFormSubmit() {
+    console.log(this.productForm.value);
+
+    if (this.productForm.valid) {
+      this.formSubmit.emit(this.productForm.value);
+    } else {
+      console.log('form valid değil');
+    }
   }
 
 }
