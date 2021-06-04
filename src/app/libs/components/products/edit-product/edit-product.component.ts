@@ -14,6 +14,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
   product: Product;
   productId: string;
   subscriptions: Subscription[];
+  title;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,6 +40,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
     return this.productService.getProductById(this.productId).subscribe(product => {
       if (product) {
         this.product = product[0];
+        this.title = `Düzenle: ${product[0].title}`;
       }
     })
   }

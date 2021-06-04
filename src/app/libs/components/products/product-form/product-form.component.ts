@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/libs/models/product';
 import { SelectOptions } from '../../shared/select/select.component';
@@ -13,7 +13,7 @@ export enum ProductFormType {
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent implements OnInit, OnChanges {
 
   @Input() data: Product;
   @Input() title: string = ' ';
@@ -26,16 +26,24 @@ export class ProductFormComponent implements OnInit {
   productForm: FormGroup;
   previewImageUrls = [];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {
+
+  }
 
   ngOnInit(): void {
-    this.productForm = this.formBuilder.group({
-      'title': [this.data?.title || '', Validators.required],
-      'description': [this.data?.description || '', Validators.required],
-      'price': [this.data?.price || 0, Validators.required]
-    });
-    this.initDefaultFormControls();
-    this.mapData();
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.data) {
+      this.productForm = this.formBuilder.group({
+        'title': [this.data?.title || '', Validators.required],
+        'description': [this.data?.description || '', Validators.required],
+        'price': [this.data?.price || 0, Validators.required]
+      });
+      this.initDefaultFormControls();
+      this.mapData();
+    }
   }
 
   initDefaultFormControls() {
@@ -81,7 +89,6 @@ export class ProductFormComponent implements OnInit {
   onGenderValueChange(gender: string) {
     this.productForm.removeControl('gender');
     this.productForm.addControl('gender', new FormControl(gender, Validators.required));
-    console.log(this.productForm.value);
   }
 
   onCategoryValueChange(category: string) {
