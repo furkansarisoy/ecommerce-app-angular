@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Product, ProductState } from 'src/app/libs/models/product';
 import { CategoryService } from 'src/app/libs/services/category.service';
 import { SelectOptions } from '../../shared/select/select.component';
@@ -47,15 +49,16 @@ export class ProductFormComponent implements OnInit, OnChanges {
 
   selectedGender;
 
-  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService,
+    private router: Router,
+    private nzNotificationService: NzNotificationService
+  ) { }
 
-  }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
-
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.productForm = this.formBuilder.group({
       'title': [this.data?.title || '', Validators.required],
       'description': [this.data?.description || '', Validators.required],
@@ -137,13 +140,15 @@ export class ProductFormComponent implements OnInit, OnChanges {
   }
 
   onFormSubmit() {
-    console.log(this.productForm.value);
-
     if (this.productForm.valid) {
       this.formSubmit.emit(this.productForm.value);
     } else {
-      console.log('form valid değil');
+      this.nzNotificationService.error('Hata!', 'Tüm alanların doldurulması zorunludur', { nzPlacement: 'bottomRight' });
     }
+  }
+
+  onCancelClick() {
+    this.router.navigate(['/admin/products']);
   }
 
 }
