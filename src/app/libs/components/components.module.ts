@@ -19,6 +19,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 // Components
 import { HeaderComponent } from './header/header.component';
@@ -39,6 +40,10 @@ import { PaymentPaginatorComponent } from './buying-process/payment-paginator/pa
 import { ProductsComponent } from './products/products.component';
 import { NewProductComponent } from './products/new-product/new-product.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
+import { ImageRowComponent } from './products/image-row/image-row.component';
+import { TagInputComponent } from './shared/tag-input/tag-input.component';
+import { SelectComponent } from './shared/select/select.component';
+import { ProductFormComponent } from './products/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +63,11 @@ import { EditProductComponent } from './products/edit-product/edit-product.compo
     PaymentPaginatorComponent,
     ProductsComponent,
     NewProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    ImageRowComponent,
+    TagInputComponent,
+    SelectComponent,
+    ProductFormComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +88,8 @@ import { EditProductComponent } from './products/edit-product/edit-product.compo
     NzSpinModule,
     NzTableModule,
     NzResultModule,
-    NzLayoutModule
+    NzLayoutModule,
+    NzSelectModule
   ],
   exports: [
     HeaderComponent

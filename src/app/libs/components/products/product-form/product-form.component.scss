@@ -1,0 +1,48 @@
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    .title {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        h1 {
+            font-weight: bold;
+            font-size: x-large;
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.form-area {
+    form {
+        display: flex;
+        justify-content: space-around;
+        align-items: baseline;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .product-informations {
+            min-width: 600px;
+            padding: 20px;
+        }
+        .product-images {
+            min-width: 400px;
+            padding: 20px 0px;
+        }
+        .product-options {
+            min-width: 100px;
+            padding: 20px 10px;
+        }
+        .form-buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            button {
+                margin-top: 10px;
+                border-radius: 8px;
+            }
+        }
+    }
+}

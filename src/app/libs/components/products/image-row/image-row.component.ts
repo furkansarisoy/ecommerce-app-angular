@@ -14,14 +14,19 @@ export class ImageRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.addField();
+    if (this.data.length < 1) {
+      this.addField();
+    }
   }
 
   addField(): void {
     const field = {
       value: ''
     };
-    this.data.push(field);
+    this.data = [
+      ...this.data,
+      field
+    ];
   }
 
   removeField(index) {

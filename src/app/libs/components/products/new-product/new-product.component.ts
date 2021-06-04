@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductFormType } from '../product-form/product-form.component';
 
 @Component({
   selector: 'app-new-product',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewProductComponent implements OnInit {
 
+  title = 'Yeni Ürün Oluştur';
+  type = ProductFormType.Create;
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
