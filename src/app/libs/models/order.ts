@@ -3,6 +3,7 @@ import { Product } from "./product";
 
 export interface Order {
     id?: string;
+    date?: Date;
     uid: string;
     address: Address;
     state: OrderState;
@@ -22,5 +23,6 @@ export enum OrderState {
     Delivered = 'delivered',
     Shipment = 'shipment',
     Preparing = 'preparing',
-    Cancelled = 'cancelled'
+    Cancelled = 'cancelled',
+    Ordered = 'ordered'
 }

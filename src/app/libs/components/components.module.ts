@@ -46,6 +46,7 @@ import { TagInputComponent } from './shared/tag-input/tag-input.component';
 import { SelectComponent } from './shared/select/select.component';
 import { ProductFormComponent } from './products/product-form/product-form.component';
 import { NewCategoryComponent } from './categories/new-category/new-category.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { NewCategoryComponent } from './categories/new-category/new-category.com
     TagInputComponent,
     SelectComponent,
     ProductFormComponent,
-    NewCategoryComponent
+    NewCategoryComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,

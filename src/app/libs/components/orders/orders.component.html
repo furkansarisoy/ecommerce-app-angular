@@ -1,0 +1,77 @@
+<section class="orders">
+    <div class="section-header">
+        <div class="title">
+            <h1>
+                Siparişler
+            </h1>
+            <h4> {{today | date}}</h4>
+        </div>
+    </div>
+
+    <nz-table class="order-table"
+              [nzData]="orders">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Alıcı</th>
+                <th>Toplam</th>
+                <th>Tarih</th>
+                <th>Durum</th>
+                <th nzWidth="10px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>
+                    {{order.id}}
+                </td>
+                <td>
+                    {{order.address.fullName}}
+                </td>
+                <td>
+                    ₺{{order.totalCost}}
+                </td>
+                <td>
+                    {{order.date}}
+                </td>
+                <td>
+                    {{formattedStateName(order.state)}}
+                </td>
+                <td>
+                    <button nz-button
+                            nzType="default"
+                            (click)="onDetailClick(order)">Detay</button>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</section>
+
+<ng-template #orderDetailModal>
+    <div style="display: flex; align-items: center;">
+        <h4 style="margin-right: 10px;"><b>Durum:</b></h4>
+        <nz-select [(ngModel)]="selectedOrder.state">
+            <nz-option *ngFor="let option of updateOrderDropdownOptions"
+                       [nzValue]="option.value"
+                       [nzLabel]="option.key"></nz-option>
+        </nz-select>
+    </div>
+
+    <h4><b>Alıcı:</b> {{selectedOrder.address.fullName}}</h4>
+    <h4><b>Telefon:</b> {{selectedOrder.address.phone}}</h4>
+    <h4><b>Adres:</b> {{selectedOrder.address.fullAddress}} </h4>
+    <h4><b>Toplam Tutar:</b> ₺{{selectedOrder.totalCost}} </h4>
+    <h4><b>Ürünler:</b></h4>
+    <div *ngFor="let orderedProduct of selectedOrder.orderedProducts"
+         class="product">
+        <div class="image">
+            <img [src]="orderedProduct.product?.previewImageUrls[0]">
+        </div>
+        <div class="information">
+            <h3 style="margin-bottom: 5px;">{{orderedProduct.product.title}}</h3>
+            <p>Beden:{{orderedProduct.size}} Adet: {{orderedProduct.count}}</p>
+            <p>₺{{orderedProduct.product.price * orderedProduct.count}}</p>
+        </div>
+        <hr />
+    </div>
+</ng-template>
