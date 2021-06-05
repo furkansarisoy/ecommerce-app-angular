@@ -11,7 +11,6 @@ export class OrderService {
 
     constructor(
         private angularFirestore: AngularFirestore,
-        private angularFireAuth: AngularFireAuth,
         private nzNotificationService: NzNotificationService
     ) { }
 
@@ -38,7 +37,10 @@ export class OrderService {
     createOrder(order: Order) {
         order.id = this.angularFirestore.createId();
         const orderRef = this.angularFirestore.doc(`orders/${order.id}`);
-        const orderData = order;
+        const orderData = {
+            ...order,
+            date: Date.now()
+        };
         return orderRef.set(orderData, {
             merge: true
         }).then(() => {

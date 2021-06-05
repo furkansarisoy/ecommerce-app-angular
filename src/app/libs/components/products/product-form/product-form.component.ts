@@ -18,7 +18,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
 
   @Output() formSubmit = new EventEmitter<Product>();
 
-  date = new Date();
+  date = Date.now();
   productForm: FormGroup;
   previewImageUrls = [];
   categoryOptions: SelectOptions[];

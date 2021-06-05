@@ -4,7 +4,7 @@
             <h1>
                 Ürünler
             </h1>
-            <h4> {{today | date}}</h4>
+            <h4> {{date | date:'d MMMM yyyy EEEE'}}</h4>
         </div>
         <div class="add-product-button">
             <button nz-button
@@ -18,30 +18,40 @@
         </div>
     </div>
 
-    <nz-table class="product-table"
-              [nzData]="products">
+    <nz-table #productTable
+              class="product-table"
+              [nzData]="filteredProducts ? filteredProducts : products"
+              [nzLoading]="isLoading"
+              [nzTitle]="tableTitle">
         <thead>
             <tr>
                 <th>Ürün</th>
-                <th>Stok</th>
+                <th [nzFilters]="genderFilterOptions"
+                    [nzFilterFn]="filterByGender">Cinsiyet</th>
                 <th>Fiyat</th>
-                <th>Durum</th>
+                <th [nzFilters]="productStateFilterOptions"
+                    [nzFilterFn]="filterByState">Durum</th>
                 <th nzWidth="10px"></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let product of products">
+            <tr *ngFor="let product of productTable.data">
                 <td style="display: flex; align-items: center;">
                     <img [src]="checkPreviewImg(product)"
                          width="60px"
                          style="margin-right: 5px">
-                    <p style="margin: 0px;">
-                        {{product.title}}
-                    </p>
+                    <div>
+                        <p style="margin: 0px;">
+                            <b>İsim:</b> {{product.title}}
+                        </p>
+                        <p style="margin: 0px;">
+                            <b>ID:</b> {{product.id}}
+                        </p>
+                    </div>
                 </td>
-                <td>{{product.stock}}</td>
+                <td>{{formattedGenderName(product.gender)}}</td>
                 <td>₺{{product.price}}</td>
-                <td> {{product.state}} </td>
+                <td> {{formattedStateName(product.state)}} </td>
                 <td nzWidth="10px">
                     <button nz-button
                             nzType="default"
@@ -51,3 +61,18 @@
         </tbody>
     </nz-table>
 </section>
+
+<ng-template #tableTitle>
+    <nz-input-group [nzSuffix]="suffixIconSearch"
+                    style="width: 40%;">
+        <input [(ngModel)]="searchText"
+               (ngModelChange)="filterBySearch()"
+               type="text"
+               nz-input
+               placeholder="ID veya ürün ismine göre ara" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+        <i nz-icon
+           nzType="search"></i>
+    </ng-template>
+</ng-template>

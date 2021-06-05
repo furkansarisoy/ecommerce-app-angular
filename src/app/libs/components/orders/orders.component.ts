@@ -1,10 +1,9 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subscription } from 'rxjs';
 import { Order, OrderState } from '../../models/order';
-import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { OrderService } from '../../services/order.service';
+import { ORDER_STATE_FILTER_OPTIONS, UPDATE_ORDER_STATE_OPTIONS } from './orders';
 
 @Component({
   selector: 'app-orders',
@@ -15,32 +14,16 @@ export class OrdersComponent implements OnInit {
 
   @ViewChild('orderDetailModal', { static: true }) orderDetailModal: TemplateRef<{}>;
 
-  today = new Date();
+  date = Date.now();
   orders: Order[];
+  filteredOrders: Order[];
   selectedOrder: Order;
+  searchText: string;
+  isLoading = false;
 
-  updateOrderDropdownOptions = [
-    {
-      key: 'Sipariş Alındı',
-      value: OrderState.Ordered
-    },
-    {
-      key: 'Hazırlanıyor',
-      value: OrderState.Preparing
-    },
-    {
-      key: 'Kargoya Verildi',
-      value: OrderState.Shipment
-    },
-    {
-      key: 'Teslim Edildi',
-      value: OrderState.Delivered
-    },
-    {
-      key: 'İptal Edildi',
-      value: OrderState.Cancelled
-    },
-  ]
+  updateOrderStateOptions = UPDATE_ORDER_STATE_OPTIONS;
+
+  orderStateFilterOptions = ORDER_STATE_FILTER_OPTIONS;
 
   subscriptions: Subscription[];
 
@@ -60,8 +43,10 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrders() {
+    this.isLoading = true;
     return this.orderService.getOrders().subscribe(orders => {
       this.orders = orders;
+      this.isLoading = false;
     });
   }
 
@@ -99,6 +84,22 @@ export class OrdersComponent implements OnInit {
       default:
         return 'Veri Yok';
     }
+  }
+
+  filterByState(state: string[], order: Order) {
+    return state.some(state => order.state === state);
+  }
+
+  sortByDate(a: Order, b: Order) {
+    return <any>new Date(a.date) - <any>new Date(b.date);
+  }
+
+  filterBySearch() {
+    this.filteredOrders = this.orders
+      .filter(order => {
+        return order.address.fullName.toUpperCase().includes(this.searchText.toUpperCase())
+          || order.id.toUpperCase().includes(this.searchText.toUpperCase());
+      });
   }
 
 }

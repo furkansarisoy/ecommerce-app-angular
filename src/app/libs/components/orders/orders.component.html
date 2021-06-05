@@ -4,24 +4,29 @@
             <h1>
                 Siparişler
             </h1>
-            <h4> {{today | date}}</h4>
+            <h4> {{date | date:'d MMMM yyyy EEEE'}}</h4>
         </div>
     </div>
 
     <nz-table class="order-table"
-              [nzData]="orders">
+              #orderTable
+              [nzData]="filteredOrders ? filteredOrders : orders"
+              [nzLoading]="isLoading"
+              [nzTitle]="tableTitle">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Alıcı</th>
                 <th>Toplam</th>
-                <th>Tarih</th>
-                <th>Durum</th>
+                <th [nzSortOrder]="null"
+                    [nzSortFn]="sortByDate">Tarih</th>
+                <th [nzFilters]="orderStateFilterOptions"
+                    [nzFilterFn]="filterByState">Durum</th>
                 <th nzWidth="10px"></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let order of orders">
+            <tr *ngFor="let order of orderTable.data">
                 <td>
                     {{order.id}}
                 </td>
@@ -32,7 +37,7 @@
                     ₺{{order.totalCost}}
                 </td>
                 <td>
-                    {{order.date}}
+                    {{order.date | date:'dd/MM/yyyy EEE hh:mm'}}
                 </td>
                 <td>
                     {{formattedStateName(order.state)}}
@@ -51,7 +56,7 @@
     <div style="display: flex; align-items: center;">
         <h4 style="margin-right: 10px;"><b>Durum:</b></h4>
         <nz-select [(ngModel)]="selectedOrder.state">
-            <nz-option *ngFor="let option of updateOrderDropdownOptions"
+            <nz-option *ngFor="let option of updateOrderStateOptions"
                        [nzValue]="option.value"
                        [nzLabel]="option.key"></nz-option>
         </nz-select>
@@ -74,4 +79,19 @@
         </div>
         <hr />
     </div>
+</ng-template>
+
+<ng-template #tableTitle>
+    <nz-input-group [nzSuffix]="suffixIconSearch"
+                    style="width: 40%;">
+        <input [(ngModel)]="searchText"
+               (ngModelChange)="filterBySearch()"
+               type="text"
+               nz-input
+               placeholder="ID veya Alıcı ismine göre ara" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+        <i nz-icon
+           nzType="search"></i>
+    </ng-template>
 </ng-template>

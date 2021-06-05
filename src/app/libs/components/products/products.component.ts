@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Product } from '../../models/product';
+import { Gender, Product, ProductState } from '../../models/product';
 import { ProductService } from '../../services/product.service';
+import { PRODUCT_STATE_FILTER_OPTIONS, GENDER_FILTER_OPTIONS } from './products';
 
 @Component({
   selector: 'app-products',
@@ -11,8 +12,14 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
 
-  today = new Date();
+  date = Date.now();
   products: Product[];
+  filteredProducts: Product[];
+  isLoading = false;
+  searchText: string;
+
+  genderFilterOptions = GENDER_FILTER_OPTIONS;
+  productStateFilterOptions = PRODUCT_STATE_FILTER_OPTIONS;
 
   subscriptions: Subscription[];
 
@@ -47,6 +54,48 @@ export class ProductsComponent implements OnInit, OnDestroy {
     } else {
       return null;
     }
+  }
+
+  formattedStateName(state: string) {
+    switch (state) {
+      case ProductState.Active:
+        return 'Aktif';
+      case ProductState.Deactive:
+        return 'İnaktif';
+      case ProductState.OutOfStock:
+        return 'Stokta Yok';
+      default:
+        return 'Veri Yok';
+    }
+  }
+
+  formattedGenderName(state: string) {
+    switch (state) {
+      case Gender.Female:
+        return 'Kadın';
+      case Gender.Male:
+        return 'Erkek';
+      default:
+        return 'Veri Yok';
+    }
+  }
+
+  filterByState(state: string[], product: Product) {
+    return state.some(state => product.state === state);
+  }
+
+  filterByGender(gender: string[], product: Product) {
+    console.log(gender, product);
+
+    return gender.some(gender => product.gender === gender);
+  }
+
+  filterBySearch() {
+    this.filteredProducts = this.products
+      .filter(product => {
+        return product.title.toUpperCase().includes(this.searchText.toUpperCase())
+          || product.id.toUpperCase().includes(this.searchText.toUpperCase());
+      });
   }
 
 }

@@ -1,5 +1,5 @@
 // Angular modules
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -51,6 +51,7 @@ const routes: Routes = [
   ],
   providers: [
     { provide: NZ_I18N, useValue: tr_TR },
+    { provide: LOCALE_ID, useValue: 'tr-TR' },
     AngularFirestore
   ],
   bootstrap: [AppComponent]
