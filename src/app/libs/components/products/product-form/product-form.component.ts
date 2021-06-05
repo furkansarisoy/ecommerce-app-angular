@@ -104,8 +104,6 @@ export class ProductFormComponent implements OnInit, OnChanges {
   }
 
   onSizeInputValueChange(sizes: string[]) {
-    console.log("sizes", sizes);
-
     this.productForm.removeControl('sizes');
     this.productForm.addControl('sizes', new FormControl(sizes, Validators.required));
   }

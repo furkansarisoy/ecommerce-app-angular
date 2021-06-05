@@ -52,7 +52,6 @@ export class OrdersComponent implements OnInit {
 
   onDetailClick(order: Order) {
     this.selectedOrder = order;
-    console.log(this.selectedOrder);
 
     this.nzModalService.create({
       nzTitle: `Sipariş ID: ${order.id}`,

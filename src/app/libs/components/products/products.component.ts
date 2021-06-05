@@ -85,8 +85,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   filterByGender(gender: string[], product: Product) {
-    console.log(gender, product);
-
     return gender.some(gender => product.gender === gender);
   }
 
