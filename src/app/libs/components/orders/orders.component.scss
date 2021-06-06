@@ -1,0 +1,45 @@
+.orders {
+    padding: 40px;
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            text-align: start;
+            h1 {
+                font-weight: bold;
+                font-size: x-large;
+                margin-bottom: 0px;
+            }
+        }
+    }
+
+    .order-table {
+        margin-top: 25px;
+    }
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    height: 100px;
+
+    .image {
+        img {
+            width: 60px;
+            height: 100%;
+        }
+    }
+
+    .information {
+        height: 100%;
+        margin-left: 20px;
+        p {
+            margin: 0px;
+        }
+    }
+}

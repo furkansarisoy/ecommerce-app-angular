@@ -1,0 +1,36 @@
+nz-carousel {
+    position: absolute;
+    height: 100vh;
+    top: 0;
+    z-index: -1;
+}
+
+.carousel-wrapper {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    h1 {
+        color: #eeeeee;
+        font-size: 4em;
+    }
+    h3 {
+        color: #eeeeee;
+        font-size: 2em;
+    }
+}

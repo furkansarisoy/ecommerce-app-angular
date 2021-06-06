@@ -1,0 +1,27 @@
+.active-page {
+    padding: 50px 100px;
+    display: flex;
+    justify-content: space-around;
+    .pagination-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .pagination-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--green-color);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 5px;
+        }
+        .next-page {
+            background-color: white !important;
+            color: unset !important;
+            border: 1px solid #dddddd;
+        }
+    }
+}

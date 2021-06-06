@@ -1,0 +1,136 @@
+<section>
+    <div class="section-header">
+        <div class="title">
+            <h1>
+                {{title}}
+            </h1>
+            <h4> {{date | date}}</h4>
+        </div>
+        <app-new-category></app-new-category>
+    </div>
+
+
+    <div class="form-area">
+        <form nz-form
+              [formGroup]="productForm">
+            <nz-card class="product-informations">
+                <nz-form-item>
+                    <nz-form-control [nzErrorTip]="errorTpl">
+                        <nz-form-label nzRequired
+                                       nzFor="title">Ürün adı
+                        </nz-form-label>
+                        <input type="text"
+                               nz-input
+                               placeholder="Başlık"
+                               formControlName="title" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzRequired
+                                   nzFor="description">Açıklama
+                    </nz-form-label>
+                    <textarea type="text"
+                              nz-input
+                              rows="5"
+                              placeholder="Açıklama giriniz"
+                              formControlName="description"></textarea>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzErrorTip]="errorTpl">
+                        <nz-form-label nzRequired>Renkler
+                        </nz-form-label>
+                        <app-tag-input [value]="data?.colors"
+                                       (valueChange)="onColorInputValueChange($event)"></app-tag-input>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzErrorTip]="errorTpl">
+                        <nz-form-label nzRequired
+                                       nzFor="sizes">Bedenler
+                        </nz-form-label>
+                        <app-tag-input [value]="data?.sizes"
+                                       (valueChange)="onSizeInputValueChange($event)"></app-tag-input>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzErrorTip]="errorTpl">
+                        <nz-form-label nzRequired>Tagler
+                        </nz-form-label>
+                        <app-tag-input [value]="data?.tags"
+                                       (valueChange)="onTagInputValueChange($event)"></app-tag-input>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-card>
+            <nz-card class="product-images">
+                <nz-form-item>
+                    <app-image-row [data]="previewImageUrls"
+                                   (valueChange)="onImagesValueChange($event)">
+
+                    </app-image-row>
+                </nz-form-item>
+            </nz-card>
+            <div>
+                <nz-card class="product-options">
+                    <nz-form-item>
+                        <nz-form-control [nzErrorTip]="errorTpl">
+                            <nz-form-label nzRequired>Cinsiyet
+                            </nz-form-label>
+                            <app-select [value]="data?.gender"
+                                        [options]="genderOptions"
+                                        (valueChange)="onGenderValueChange($event)"></app-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control [nzErrorTip]="errorTpl">
+                            <nz-form-label nzRequired>Kategori
+                            </nz-form-label>
+                            <app-select [value]="data?.category"
+                                        [options]="categoryOptions"
+                                        (valueChange)="onCategoryValueChange($event)"></app-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control [nzErrorTip]="errorTpl">
+                            <nz-form-label nzRequired>Durum
+                            </nz-form-label>
+                            <app-select [value]="data?.state"
+                                        [options]="productStateOptions"
+                                        (valueChange)="onProductStateValueChange($event)"></app-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control [nzErrorTip]="errorTpl">
+                            <nz-form-label nzRequired
+                                           nzFor="price">Fiyat
+                            </nz-form-label>
+                            <nz-input-group nzAddOnBefore="₺">
+                                <nz-input-number [nzMin]="0"
+                                                 placeholder="Fiyat giriniz"
+                                                 formControlName="price">
+                                </nz-input-number>
+                            </nz-input-group>
+                        </nz-form-control>
+                    </nz-form-item>
+                </nz-card>
+                <div class="form-buttons">
+                    <button nz-button
+                            nzType="primary"
+                            (click)="onFormSubmit()">
+                        Kaydet
+                    </button>
+                    <button nz-button
+                            (click)="onCancelClick()">
+                        İptal Et
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<ng-template #errorTpl
+             let-control>
+    <ng-container *ngIf="control?.hasError('required')">
+        Bu alanın doldurulması zorunludur!
+    </ng-container>
+</ng-template>

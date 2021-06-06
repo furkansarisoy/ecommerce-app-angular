@@ -1,1 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+* {
+    font-family: "Open Sans", sans-serif;
+}
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased !important;
+}
+:root {
+    --green-color: #3cb18f;
+}
+
+::selection {
+    background-color: var(--green-color);
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #dddddd;
+    margin: 1em 0;
+    padding: 0;
+}

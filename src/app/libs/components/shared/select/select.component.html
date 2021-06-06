@@ -1,0 +1,6 @@
+<nz-select [(ngModel)]="value"
+           (ngModelChange)="onValueChange()">
+    <nz-option *ngFor="let option of options"
+               [nzValue]="option.value"
+               [nzLabel]="option.key"></nz-option>
+</nz-select>

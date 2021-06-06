@@ -1,0 +1,40 @@
+<button nz-button
+        (click)="isCategoryModalVisible = true">Yeni Kategori Ekle</button>
+<nz-modal [(nzVisible)]="isCategoryModalVisible"
+          nzTitle="Yeni Kategori oluştur"
+          [nzFooter]="null"
+          (nzOnCancel)="handleModalCancel()">
+    <form [formGroup]="categoryForm"
+          (ngSubmit)="onFormSubmit(categoryForm)">
+        <nz-form-item>
+            <nz-form-control [nzErrorTip]="errorTpl">
+                <nz-form-label nzRequired>Cinsiyet
+                </nz-form-label>
+                <app-select [options]="genderOptions"
+                            [value]="selectedGender"
+                            (valueChange)="onGenderValueChange($event)"></app-select>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzErrorTip]="errorTpl">
+                <nz-form-label nzRequired
+                               nzFor="name">Ürün adı
+                </nz-form-label>
+                <input type="text"
+                       nz-input
+                       placeholder="Kategori ismi giriniz"
+                       formControlName="name" />
+            </nz-form-control>
+        </nz-form-item>
+        <button nz-button
+                nzType="primary"
+                type="submit">Kaydet</button>
+    </form>
+</nz-modal>
+
+<ng-template #errorTpl
+             let-control>
+    <ng-container *ngIf="control?.hasError('required')">
+        Bu alanın doldurulması zorunludur!
+    </ng-container>
+</ng-template>

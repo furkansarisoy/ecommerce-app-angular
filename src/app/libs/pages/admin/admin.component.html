@@ -1,0 +1,50 @@
+<nz-layout style="width: 100%; height: 100%; overflow: scroll;">
+    <nz-sider [nzWidth]="'300px'">
+        <div class="brand">
+            <a [routerLink]="['/homepage']">
+                <div class="brand-image">
+                </div>
+            </a>
+        </div>
+        <ul class="menu"
+            nz-menu
+            nzMode="inline">
+            <li nz-menu-item
+                [routerLink]="['/admin/dashboard']"
+                [nzMatchRouter]="true">
+                <i nz-icon
+                   nzType="dashboard"
+                   nzTheme="fill"></i>
+                <span>Yönetim Paneli</span>
+            </li>
+            <li nz-menu-item
+                [routerLink]="['/admin/products']"
+                [nzMatchRouter]="true">
+                <i nz-icon
+                   nzType="shop"
+                   nzTheme="outline"></i>
+                <span>Ürünler</span>
+            </li>
+            <li nz-menu-item
+                [routerLink]="['/admin/orders']"
+                [nzMatchRouter]="true">
+                <i class="fas fa-dolly"
+                   style="margin-right: 7px;"></i>
+                <span>Siparişler</span>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon
+                   nzType="setting"
+                   nzTheme="fill"></i>
+                <span>Hesap Ayarları</span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout style="width: 100%; height: 100%; overflow: scroll;">
+        <app-header [type]="headerType"
+                    style="width: 100%;"></app-header>
+        <nz-content>
+            <router-outlet></router-outlet>
+        </nz-content>
+    </nz-layout>
+</nz-layout>

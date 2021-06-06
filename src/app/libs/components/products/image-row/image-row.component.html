@@ -1,0 +1,24 @@
+<div class="image-row-wrapper">
+    <div *ngFor="let item of data; let i = index"
+         class="image-row">
+        <img [src]="item.value || 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081'"
+             width="100px">
+        <input class="image-input"
+               nz-input
+               placeholder="Eklemek istediğiniz resim için url giriniz"
+               [(ngModel)]="item.value"
+               (ngModelChange)="onValueChange()" />
+        <i nz-icon
+           nzType="minus-circle-o"
+           class="delete-button"
+           (click)="removeField(i)"></i>
+    </div>
+    <button nz-button
+            nzType="dashed"
+            class="add-button"
+            (click)="addField()">
+        <i nz-icon
+           nzType="plus"></i>
+        Yeni Resim Ekle
+    </button>
+</div>

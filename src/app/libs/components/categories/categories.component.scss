@@ -1,0 +1,119 @@
+.image-container {
+    height: 30vh;
+    background-image: url("https://images.unsplash.com/photo-1483985988355-763728e1935b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+    background-position: center;
+    background-size: cover;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.categories {
+    text-align: start;
+    padding: 30px;
+    h2 {
+        font-weight: bold;
+        padding: 5px;
+    }
+    ul {
+        border: none;
+        align-items: center;
+        ::ng-deep .ant-menu-item-selected {
+            &::after {
+                border-color: #00aaff;
+            }
+        }
+    }
+}
+
+.products {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .card-body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .product-title {
+            line-height: normal;
+            font-size: 14px;
+            color: #666;
+            margin: 2px 0;
+        }
+        .product-price {
+            color: var(--green-color);
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+}
+
+.card-buttons {
+    svg {
+        font-size: 18px;
+        transition: 0.5s;
+        &:hover {
+            font-size: 22px;
+        }
+    }
+}
+
+.favorite {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    z-index: 99;
+    float: left;
+    width: 43px;
+    height: 43px;
+    background-color: white;
+    border-radius: 50%;
+    .fvrt {
+        color: var(--green-color);
+        &:hover {
+            color: var(--green-color);
+        }
+    }
+    .non-fvrt {
+        color: #666;
+        &:hover {
+            color: var(--green-color);
+        }
+    }
+}
+
+nz-card {
+    margin: 10px;
+    border: none;
+    &:hover {
+        ::ng-deep .ant-card-cover {
+            img {
+                transition: transform 0.5s;
+                transform: scale(1.1);
+            }
+        }
+    }
+    ::ng-deep {
+        .ant-card-cover {
+            border: 1px #f5f4f4 solid;
+            overflow: hidden;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            img {
+                transition: transform 0.5s;
+                transform: scale(1);
+            }
+        }
+        .ant-card-body {
+            padding: 5px;
+        }
+    }
+}

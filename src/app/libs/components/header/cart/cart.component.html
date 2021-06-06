@@ -1,0 +1,51 @@
+<nz-badge [nzCount]="items?.length"
+          nz-dropdown
+          [nzDropdownMenu]="menu"
+          nzTrigger="hover">
+    <i nz-icon
+       nzType="shopping-cart"
+       nzTheme="outline"></i>
+</nz-badge>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="dropdown-wrapper"
+         style="background-color: white;">
+        <h4 class="heading">Sepetim ({{items?.length}} ürün)</h4>
+        <div class="product-wrapper">
+            <div *ngFor="let item of items">
+                <div class="product"
+                     (click)="onProductClick(item)">
+                    <div class="image">
+                        <img [src]="checkPreviewImage(item.product)">
+                    </div>
+                    <div class="information">
+                        <h3 style="margin-bottom: 5px;">{{item.product.title}}</h3>
+                        <p>Size:{{item.size}} Count: {{item.count}}</p>
+                        <p>₺{{item.product.price}}</p>
+                    </div>
+                    <div class="remove-icon"
+                         nz-tooltip
+                         nzTooltipTitle="Ürünü Sepetimden Çıkart"
+                         (click)="removeItemFormCart(item)">
+                        <i nz-icon
+                           nzType="close"
+                           nzTheme="outline"></i>
+                    </div>
+                </div>
+                <hr />
+            </div>
+        </div>
+        <div *ngIf="items?.length; else noItemTmp"
+             class="confirm-cart">
+            <button nz-button
+                    (click)="onCartConfirm()">Sepeti Onayla</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<ng-template #noItemTmp>
+    <div class="confirm-cart">
+        <button [disabled]="true"
+                nz-button>Sepetiniz Boş</button>
+    </div>
+</ng-template>

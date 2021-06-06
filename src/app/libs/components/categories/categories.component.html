@@ -1,0 +1,61 @@
+<nz-spin [nzSpinning]="isLoading">
+    <section>
+        <div class="image-container">
+        </div>
+        <div class="content">
+            <div class="categories">
+                <h2>Kategoriler</h2>
+                <ul nz-menu
+                    nzMode="inline">
+                    <li nz-menu-item
+                        [nzSelected]="category === categories[0]"
+                        *ngFor="let category of categories"
+                        (click)="filterProductsByCategoryId(category)">
+                        {{category.name}}
+                    </li>
+                </ul>
+            </div>
+            <div class="products">
+                <ng-container *ngFor="let product of categorizedProducts">
+                    <nz-card nzHoverable
+                             style="width:240px"
+                             [nzCover]="coverTemplate"
+                             (click)="onProductClick(product.id)">
+                        <div class="card-body">
+                            <div class="card-informations">
+                                <div>
+                                    <span class="product-title">
+                                        {{product.title}}
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="product-price">
+                                        ₺{{product.price}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="favorite"
+                             (click)="onFavClick($event, product)">
+                            <i *ngIf="isFaved(product)"
+                               class="fvrt"
+                               nz-icon
+                               nzType="heart"
+                               nzTheme="fill"></i>
+                            <i *ngIf="!isFaved(product)"
+                               class="non-fvrt"
+                               nz-icon
+                               nzType="heart"
+                               nzTheme="outline"></i>
+                        </div>
+                    </nz-card>
+                    <ng-template #coverTemplate>
+                        <img class="card-image"
+                             [src]="product.previewImageUrls[0]" />
+                    </ng-template>
+                </ng-container>
+
+            </div>
+        </div>
+    </section>
+</nz-spin>

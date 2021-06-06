@@ -1,0 +1,82 @@
+<app-payment-paginator [activePage]="'shipment'"></app-payment-paginator>
+
+<section class="confirm-shipment-section">
+
+    <div *ngIf="false; else noActivePersonTemplate"></div>
+
+    <div class="order-operation-wrapper">
+        <app-order-summary></app-order-summary>
+        <button class="confirm-shipment-button"
+                nz-button
+                (click)="onShipmentConfirm()">Teslimat Bilgilerini Onayla</button>
+        <button class="back-to-cart-button"
+                nz-button
+                (click)="onBackToCart()">Sepete Geri Dön</button>
+    </div>
+</section>
+
+
+<ng-template #noActivePersonTemplate>
+    <div class="new-address-form">
+        <form nz-form
+              nzLayout="vertical"
+              [formGroup]="addressForm">
+            <nz-form-item>
+                <nz-form-control nzHasFeedback
+                                 [nzErrorTip]="errorTpl">
+                    <nz-form-label nzRequired
+                                   nzFor="fullName">Alıcının Adı ve Soyadı
+                    </nz-form-label>
+                    <input type="text"
+                           nz-input
+                           placeholder="Lütfen isminiz ve soyisminizi tam olarak giriniz"
+                           formControlName="fullName" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control nzHasFeedback
+                                 [nzErrorTip]="errorTpl">
+                    <nz-form-label nzRequired
+                                   nzFor="mail">E-mail Adresi
+                    </nz-form-label>
+                    <input type="text"
+                           nz-input
+                           placeholder="E-mail"
+                           formControlName="mail" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control nzHasFeedback
+                                 [nzErrorTip]="errorTpl">
+                    <nz-form-label nzRequired
+                                   nzFor="phone">Telefon Numarası
+                    </nz-form-label>
+                    <input type="tel"
+                           nz-input
+                           placeholder="Telefon numarası"
+                           formControlName="phone" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control nzHasFeedback
+                                 [nzErrorTip]="errorTpl">
+                    <nz-form-label nzRequired
+                                   nzFor="fullAddress">Tam Adres
+                    </nz-form-label>
+                    <textarea [nzAutosize]="{minRows: 3, maxRows: 5}"
+                              type="text"
+                              nz-input
+                              placeholder="Adresinizi tam olarak giriniz"
+                              formControlName="fullAddress"></textarea>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #errorTpl
+             let-control>
+    <ng-container *ngIf="control.hasError('required')">
+        Bu alanın doldurulması zorunludur!
+    </ng-container>
+</ng-template>
