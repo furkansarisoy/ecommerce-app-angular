@@ -21,8 +21,4 @@ export class UserDropdownComponent implements OnInit {
     this.logOut.emit();
   }
 
-  onDashboardClick() {
-    this.router.navigate(['/admin']);
-  }
-
 }

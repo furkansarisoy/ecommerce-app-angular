@@ -21,14 +21,13 @@ export class OrderGuard implements CanActivate {
     canActivate(
         next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        const path = window.location.pathname;
         const cart = this.cartService.getCart();
         const activeAddress = this.addressService.getActiveAddress();
-        if (cart.length <= 0 && (path === '/shipment' || '/payment')) {
+        if (cart?.length <= 0 && (state.url === '/shipment' || '/payment')) {
             this.router.navigate(['/confirm-cart']);
             this.nzNotificationService.error('Sepet Boş', 'Sipariş verebilmek için sepetinizde ürün olmalıdır', { nzPlacement: 'bottomRight' });
         }
-        if (activeAddress == null && path === '/payment') {
+        if (activeAddress == null && state.url === '/payment') {
             this.router.navigate(['/shipment']);
             this.nzNotificationService.error('Adres Bilgisi Eksik', 'Lütfen adres bilgisini eksiksiz giriniz', { nzPlacement: 'bottomRight' });
         }

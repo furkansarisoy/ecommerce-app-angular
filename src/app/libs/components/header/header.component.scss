@@ -40,6 +40,13 @@
                 }
             }
         }
+
+        .contact:hover {
+            span,
+            svg {
+                color: var(--green-color);
+            }
+        }
     }
 }
 

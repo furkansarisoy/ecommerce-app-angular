@@ -15,10 +15,17 @@ import { ProductsComponent } from '../../components/products/products.component'
 import { EditProductComponent } from '../../components/products/edit-product/edit-product.component';
 import { NewProductComponent } from '../../components/products/new-product/new-product.component';
 import { OrdersComponent } from '../../components/orders/orders.component';
+import { DashboardComponent } from '../../components/dashboard/dashboard.component';
 
 const routes: Routes = [
     {
         path: '', component: AdminComponent, children: [
+            {
+                path: '', redirectTo: 'dashboard'
+            },
+            {
+                path: 'dashboard', component: DashboardComponent
+            },
             {
                 path: 'products', component: ProductsComponent
             },

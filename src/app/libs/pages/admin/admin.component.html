@@ -9,21 +9,25 @@
         <ul class="menu"
             nz-menu
             nzMode="inline">
-            <li nz-menu-item>
+            <li nz-menu-item
+                [routerLink]="['/admin/dashboard']"
+                [nzMatchRouter]="true">
                 <i nz-icon
                    nzType="dashboard"
                    nzTheme="fill"></i>
                 <span>Yönetim Paneli</span>
             </li>
             <li nz-menu-item
-                [routerLink]="'products'">
+                [routerLink]="['/admin/products']"
+                [nzMatchRouter]="true">
                 <i nz-icon
                    nzType="shop"
                    nzTheme="outline"></i>
                 <span>Ürünler</span>
             </li>
             <li nz-menu-item
-                [routerLink]="'orders'">
+                [routerLink]="['/admin/orders']"
+                [nzMatchRouter]="true">
                 <i class="fas fa-dolly"
                    style="margin-right: 7px;"></i>
                 <span>Siparişler</span>

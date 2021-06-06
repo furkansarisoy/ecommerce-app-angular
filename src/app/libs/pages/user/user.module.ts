@@ -50,10 +50,10 @@ const routes: Routes = [
         path: 'confirm-cart', component: ConfirmCartComponent
       },
       {
-        path: 'shipment', component: ShipmentComponent, canActivate: [OrderGuard]
+        path: 'shipment', component: ShipmentComponent
       },
       {
-        path: 'payment', component: PaymentComponent, canActivate: [OrderGuard]
+        path: 'payment', component: PaymentComponent
       }
     ]
   }

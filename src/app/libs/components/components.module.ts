@@ -47,6 +47,7 @@ import { SelectComponent } from './shared/select/select.component';
 import { ProductFormComponent } from './products/product-form/product-form.component';
 import { NewCategoryComponent } from './categories/new-category/new-category.component';
 import { OrdersComponent } from './orders/orders.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { OrdersComponent } from './orders/orders.component';
     SelectComponent,
     ProductFormComponent,
     NewCategoryComponent,
-    OrdersComponent
+    OrdersComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

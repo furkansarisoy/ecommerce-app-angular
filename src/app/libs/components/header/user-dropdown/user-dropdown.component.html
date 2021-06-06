@@ -1,34 +1,78 @@
-<i [nzDropdownMenu]="menu"
-   nz-dropdown
-   nzTrigger="click"
-   nz-icon
-   nzType="user"
-   nzTheme="outline"></i>
+<ng-container *ngIf="!isAdmin">
+    <i [nzDropdownMenu]="menu"
+       nz-dropdown
+       nzTrigger="click"
+       nz-icon
+       nzType="user"
+       nzTheme="outline"></i>
 
-<nz-dropdown-menu #menu="nzDropdownMenu">
-    <ul nz-menu
-        nzSelectable>
-        <li nz-menu-item
-            (click)="onLogOutClick()">
-            <i nz-icon
-               nzType="setting"
-               nzTheme="outline"></i>
-            Profil Ayarları
-        </li>
-        <li *ngIf="isAdmin"
-            nz-menu-item
-            (click)="onDashboardClick()">
-            <i nz-icon
-               nzType="dashboard"
-               nzTheme="outline"></i>
-            Yönetim Paneli
-        </li>
-        <li nz-menu-item
-            (click)="onLogOutClick()">
-            <i nz-icon
-               nzType="poweroff"
-               nzTheme="outline"></i>
-            Çıkış Yap
-        </li>
-    </ul>
-</nz-dropdown-menu>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu
+            nzSelectable>
+            <li nz-menu-item>
+                <i nz-icon
+                   nzType="setting"
+                   nzTheme="outline"></i>
+                Profil Ayarları
+            </li>
+            <li nz-menu-item
+                (click)="onLogOutClick()">
+                <i nz-icon
+                   nzType="poweroff"
+                   nzTheme="outline"></i>
+                Çıkış Yap
+            </li>
+        </ul>
+    </nz-dropdown-menu>
+</ng-container>
+
+
+<ng-container *ngIf="isAdmin">
+    <i [nzDropdownMenu]="menu"
+       nz-dropdown
+       nzTrigger="click"
+       nz-icon
+       nzType="user"
+       nzTheme="outline"></i>
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu
+            nzSelectable>
+            <li nz-menu-item
+                [routerLink]="['/admin/dashboard']">
+                <i nz-icon
+                   nzType="dashboard"
+                   nzTheme="outline"></i>
+                Yönetim Paneli
+            </li>
+            <li nz-menu-item
+                [routerLink]="['/admin/products']">
+                <i nz-icon
+                   nzType="shop"
+                   nzTheme="outline"></i>
+                Ürünler
+            </li>
+            <li *ngIf="isAdmin"
+                nz-menu-item
+                [routerLink]="['/admin/orders']">
+                <i class="fas fa-dolly"></i>
+                Siparişler
+            </li>
+            <li *ngIf="isAdmin"
+                nz-menu-item
+                [routerLink]="['/admin/profile-settings']">
+                <i nz-icon
+                   nzType="setting"
+                   nzTheme="outline"></i>
+                Hesap Ayarları
+            </li>
+            <li nz-menu-item
+                (click)="onLogOutClick()">
+                <i nz-icon
+                   nzType="poweroff"
+                   nzTheme="outline"></i>
+                Çıkış Yap
+            </li>
+        </ul>
+    </nz-dropdown-menu>
+</ng-container>
