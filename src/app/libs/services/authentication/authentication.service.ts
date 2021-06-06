@@ -114,17 +114,5 @@ export class AuthenticationService {
         }
     }
 
-    get isLoggedIn() {
-        let isLoggedIn;
-        this.angularFireAuth.authState.subscribe(person => {
-            if (person) {
-                isLoggedIn = true;
-            } else {
-                isLoggedIn = false;
-            }
-        });
-        return isLoggedIn;
-    }
-
-
 }
+

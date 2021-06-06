@@ -13,10 +13,14 @@ import { LoginComponent } from '../../components/authentication/login/login.comp
 import { RegisterComponent } from '../../components/authentication/register/register.component';
 import { ResetPasswordComponent } from '../../components/authentication/reset-password/reset-password.component';
 import { ProductDetailComponent } from '../../components/product-detail/product-detail.component';
-import { AuthenticationGuard } from '../../services/authentication/authentication.guard';
+import { AuthenticationGuard } from '../../services/guards/authentication.guard';
 import { ConfirmCartComponent } from '../../components/buying-process/confirm-cart/confirm-cart.component';
 import { ShipmentComponent } from '../../components/buying-process/shipment/shipment.component';
 import { PaymentComponent } from '../../components/buying-process/payment/payment.component';
+import { OrderGuard } from '../../services/guards/order.guard';
+import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+
+const redirectLoggedInToHomepage = () => redirectLoggedInTo(['homepage']);
 
 const routes: Routes = [
   {
@@ -31,13 +35,13 @@ const routes: Routes = [
         path: 'categories/:gender', component: CategoriesComponent
       },
       {
-        path: 'login', component: LoginComponent
+        path: 'login', component: LoginComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToHomepage }
       },
       {
-        path: 'register', component: RegisterComponent
+        path: 'register', component: RegisterComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToHomepage }
       },
       {
-        path: 'reset-password', component: ResetPasswordComponent
+        path: 'reset-password', component: ResetPasswordComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToHomepage }
       },
       {
         path: 'product/:id', component: ProductDetailComponent
@@ -46,10 +50,10 @@ const routes: Routes = [
         path: 'confirm-cart', component: ConfirmCartComponent
       },
       {
-        path: 'shipment', component: ShipmentComponent
+        path: 'shipment', component: ShipmentComponent, canActivate: [OrderGuard]
       },
       {
-        path: 'payment', component: PaymentComponent
+        path: 'payment', component: PaymentComponent, canActivate: [OrderGuard]
       }
     ]
   }

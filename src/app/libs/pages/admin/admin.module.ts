@@ -1,6 +1,7 @@
 //Angular imports
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from '../../services/guards/admin.guard';
 
 // Ng zorro modules
 import { NzLayoutModule } from 'ng-zorro-antd/layout';

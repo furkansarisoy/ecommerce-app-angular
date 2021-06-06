@@ -21,6 +21,11 @@ import { AppComponent } from './app.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { tr_TR } from 'ng-zorro-antd/i18n';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { AdminGuard } from './libs/services/guards/admin.guard';
+
+const adminOnly = () => hasCustomClaim('admin');
+const redirectToHomepage = () => redirectUnauthorizedTo(['/homepage']);
 
 registerLocaleData(tr);
 
@@ -31,6 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    canActivate: [AdminGuard],
     loadChildren: () => import('./libs/pages/admin/admin.module').then(m => m.AdminModule)
   }
 ];

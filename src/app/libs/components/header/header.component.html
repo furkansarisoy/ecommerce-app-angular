@@ -44,6 +44,7 @@
         <div class="cart-user">
             <app-cart></app-cart>
             <app-user-dropdown *ngIf="activePerson"
+                               [isAdmin]="isAdmin"
                                (logOut)="logOut()"></app-user-dropdown>
         </div>
     </div>
@@ -53,6 +54,7 @@
     <div class="navigation-bar-admin">
         <div class="user">
             <app-user-dropdown *ngIf="activePerson"
+                               [isAdmin]="isAdmin"
                                (logOut)="logOut()"></app-user-dropdown>
         </div>
     </div>

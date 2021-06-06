@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
   HeaderType = HeaderType;
 
   activePerson;
+  isAdmin: boolean;
 
   constructor(
     private router: Router,
@@ -43,6 +44,7 @@ export class HeaderComponent implements OnInit {
     this.angularFireAuth.authState.subscribe(person => {
       if (person) {
         this.activePerson = person;
+        this.checkUserRole();
       } else {
         this.activePerson = person;
       }
@@ -56,6 +58,16 @@ export class HeaderComponent implements OnInit {
     if (url) {
       this.router.navigate([url]);
     }
+  }
+
+  checkUserRole() {
+    this.authService.getActivePersonCredentialsById(this.activePerson.uid).subscribe(person => {
+      if (person?.isAdmin) {
+        this.isAdmin = true;
+      } else {
+        this.isAdmin = false;
+      }
+    });
   }
 
   logOut() {

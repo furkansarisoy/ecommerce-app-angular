@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dropdown',
@@ -7,15 +8,21 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class UserDropdownComponent implements OnInit {
 
+  @Input() isAdmin: boolean;
+
   @Output() logOut = new EventEmitter();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onLogOutClick() {
     this.logOut.emit();
+  }
+
+  onDashboardClick() {
+    this.router.navigate(['/admin']);
   }
 
 }

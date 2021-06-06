@@ -15,6 +15,14 @@
                nzTheme="outline"></i>
             Profil Ayarları
         </li>
+        <li *ngIf="isAdmin"
+            nz-menu-item
+            (click)="onDashboardClick()">
+            <i nz-icon
+               nzType="dashboard"
+               nzTheme="outline"></i>
+            Yönetim Paneli
+        </li>
         <li nz-menu-item
             (click)="onLogOutClick()">
             <i nz-icon
