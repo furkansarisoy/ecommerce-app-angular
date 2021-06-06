@@ -5,8 +5,11 @@
         <div class="content">
             <div class="categories">
                 <h2>Kategoriler</h2>
-                <ul>
-                    <li *ngFor="let category of categories"
+                <ul nz-menu
+                    nzMode="inline">
+                    <li nz-menu-item
+                        [nzSelected]="category === categories[0]"
+                        *ngFor="let category of categories"
                         (click)="filterProductsByCategoryId(category)">
                         {{category.name}}
                     </li>
@@ -34,7 +37,16 @@
                         </div>
                         <div class="favorite"
                              (click)="onFavClick($event, product)">
-                            <i class="fvrt"></i>
+                            <i *ngIf="isFaved(product)"
+                               class="fvrt"
+                               nz-icon
+                               nzType="heart"
+                               nzTheme="fill"></i>
+                            <i *ngIf="!isFaved(product)"
+                               class="non-fvrt"
+                               nz-icon
+                               nzType="heart"
+                               nzTheme="outline"></i>
                         </div>
                     </nz-card>
                     <ng-template #coverTemplate>

@@ -21,6 +21,7 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 // Components
 import { HeaderComponent } from './header/header.component';
@@ -97,7 +98,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NzResultModule,
     NzLayoutModule,
     NzSelectModule,
-    NzModalModule
+    NzModalModule,
+    NzMessageModule
   ],
   exports: [
     HeaderComponent
