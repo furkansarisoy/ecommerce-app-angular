@@ -23,7 +23,6 @@ import { tr_TR } from 'ng-zorro-antd/i18n';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { AdminGuard } from './libs/services/guards/admin.guard';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const adminOnly = () => hasCustomClaim('admin');
 const redirectToHomepage = () => redirectUnauthorizedTo(['/homepage']);
@@ -54,8 +53,7 @@ const routes: Routes = [
     NzNotificationModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    NgbModule
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: tr_TR },
