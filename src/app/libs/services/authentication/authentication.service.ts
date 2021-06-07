@@ -39,7 +39,7 @@ export class AuthenticationService {
                 this.notificationService.success("Başarılı", "Kayıt olma işleminiz başarı ile tamamladı.", { nzPlacement: "bottomRight" });
                 this.setUserData(res.user, userCredential);
                 this.ngZone.run(() => {
-                    this.router.navigate(['/homepage']);
+                    this.router.navigate(['/personalized-filter']);
                 });
                 this.isLoading.next(false);
                 localStorage.clear();

@@ -12,10 +12,10 @@ export interface SelectOptions {
 })
 export class SelectComponent implements OnInit {
 
-  @Input() value: string[];
+  @Input() value: string;
   @Input() options: SelectOptions[];
 
-  @Output() valueChange = new EventEmitter<string[]>();
+  @Output() valueChange = new EventEmitter<string>();
 
   constructor() { }
 

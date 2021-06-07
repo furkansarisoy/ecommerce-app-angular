@@ -19,8 +19,10 @@ import { ShipmentComponent } from '../../components/buying-process/shipment/ship
 import { PaymentComponent } from '../../components/buying-process/payment/payment.component';
 import { OrderGuard } from '../../services/guards/order.guard';
 import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { PersonalizedFilterComponent } from '../../components/personalized-filter/personalized-filter.component';
 
 const redirectLoggedInToHomepage = () => redirectLoggedInTo(['homepage']);
+const redirectUnauthorizedToLoginPage = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   {
@@ -54,6 +56,9 @@ const routes: Routes = [
       },
       {
         path: 'payment', component: PaymentComponent
+      },
+      {
+        path: 'personalized-filter', component: PersonalizedFilterComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLoginPage }
       }
     ]
   }

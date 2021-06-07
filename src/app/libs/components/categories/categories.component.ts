@@ -20,7 +20,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   activePerson;
   products: Product[];
   categorizedProducts: Product[];
-  categories: string[];
+  categories: any[];
   genderParam: string;
   subscriptions: Subscription[];
   isLoading = false;
@@ -37,23 +37,14 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.subscriptions = [
-      this.getParamsFromUrl(),
       this.subscribeToActivePersonId()
     ];
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
-  }
-
-  getParamsFromUrl() {
-    return this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      this.isLoading = true;
-      this.genderParam = params.get('gender');
-      this.getProductsByGender(this.genderParam);
-      this.getCategoriesByGender(this.genderParam);
-    });
   }
 
   subscribeToActivePersonId() {
@@ -64,6 +55,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
       } else {
         this.activePersonId = null;
         this.activePerson = null;
+        this.getParamsFromUrl();
       }
     });
   }
@@ -71,6 +63,15 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   subscribeToActivePerson() {
     this.authService.getActivePersonCredentialsById(this.activePersonId).subscribe(person => {
       this.activePerson = person;
+      this.getParamsFromUrl();
+    });
+  }
+
+  getParamsFromUrl() {
+    return this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      this.genderParam = params.get('gender');
+      this.getProductsByGender(this.genderParam);
+      this.getCategoriesByGender(this.genderParam);
     });
   }
 
@@ -83,13 +84,41 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   getCategoriesByGender(gender) {
     return this.categoryService.getCategoriesByGender(gender).subscribe(categories => {
       this.categories = categories;
-      this.isLoading = false;
-      this.filterProductsByCategoryId(this.categories[0]);
+      if (this?.activePerson?.personalizedTags.length) {
+        this.setPersonalizedCategory();
+      } else {
+        this.filterProductsByCategoryId(this.categories[0]);
+      }
     })
   }
 
   filterProductsByCategoryId(category) {
-    this.categorizedProducts = this.products.filter(product => product.category === category.id && product.state === ProductState.Active);
+    if (category.id === 'personalized') {
+      this.categorizedProducts = this.filterProductsByPersonalizedTags();
+    } else {
+      this.categorizedProducts = this.products.filter(product => product.category === category.id && product.state === ProductState.Active);
+    }
+    this.isLoading = false;
+  }
+
+
+  setPersonalizedCategory() {
+    this.categories = [
+      {
+        name: 'Sana Özel Ürünler',
+        id: 'personalized'
+      },
+      ...this.categories
+    ];
+    this.filterProductsByCategoryId(this.categories[0]);
+  }
+
+  filterProductsByPersonalizedTags() {
+    const tags: string[] = this.activePerson.personalizedTags;
+    const filteredProducts = this.products.filter(product => {
+      return product.tags.some(tag => tags.includes(tag)) && product.state === ProductState.Active;
+    });
+    return filteredProducts;
   }
 
   onProductClick(id: string) {

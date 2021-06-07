@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/libs/services/authentication/authentication.service';
 
@@ -13,6 +13,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   isLoading = false;
   subscription: Subscription;
+  selectedGender: string;
+
+  genderOptions = [
+    {
+      key: 'Erkek',
+      value: 'male'
+    },
+    {
+      key: 'Kadın',
+      value: 'female'
+    }
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,14 +52,21 @@ export class RegisterComponent implements OnInit, OnDestroy {
     });
   }
 
+  onGenderSelect(value) {
+    this.registerForm.removeControl('gender');
+    this.registerForm.addControl('gender', new FormControl(value, Validators.required));
+    this.selectedGender = value;
+  }
+
   onSubmit() {
-    if (this.registerForm.valid) {
+    if (this.registerForm.valid && !(this.selectedGender == null)) {
       const password = this.registerForm.value.password;
       delete this.registerForm.value.password;
       const credential = this.registerForm.value;
       this.authService.register(credential, password)
     } else {
       console.log('Form Valid Değil');
+      console.log(this.selectedGender);
     }
   }
 

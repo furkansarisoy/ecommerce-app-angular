@@ -53,6 +53,18 @@
                             <nz-form-control nzHasFeedback
                                              [nzErrorTip]="errorTpl">
                                 <nz-form-label nzRequired
+                                               nzFor="gender">Cinsiyetiniz
+                                </nz-form-label>
+                                <app-select style="margin-bottom: 5px;"
+                                            [options]="genderOptions"
+                                            (valueChange)="onGenderSelect($event)">
+                                </app-select>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzHasFeedback
+                                             [nzErrorTip]="errorTpl">
+                                <nz-form-label nzRequired
                                                nzFor="mail">E-mail adresi giriniz
                                 </nz-form-label>
                                 <input type="email"
