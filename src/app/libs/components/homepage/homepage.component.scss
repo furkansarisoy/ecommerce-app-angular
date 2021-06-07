@@ -34,3 +34,23 @@ nz-carousel {
         font-size: 2em;
     }
 }
+
+.title {
+    position: absolute;
+    top: 40%;
+    right: 15%;
+    font-size: x-large;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 50px 100px;
+    text-align: center;
+    border-radius: 10px;
+    h1 {
+        color: white;
+    }
+    button {
+        border-radius: 15px;
+        background-color: transparent;
+        color: white;
+    }
+}

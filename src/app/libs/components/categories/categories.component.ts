@@ -49,7 +49,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   subscribeToActivePersonId() {
     return this.angularFireAuth.authState.subscribe(state => {
-      if (state.uid) {
+      if (state) {
         this.activePersonId = state.uid;
         this.subscribeToActivePerson();
       } else {
