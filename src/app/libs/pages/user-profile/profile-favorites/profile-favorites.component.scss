@@ -1,0 +1,18 @@
+.product-row {
+    .product-col {
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        p {
+            font-size: medium;
+            margin: 0px;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

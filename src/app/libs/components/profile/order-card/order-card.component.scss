@@ -1,0 +1,39 @@
+.order-card {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    ::ng-deep .ant-card-body {
+        padding: 0px;
+    }
+    .heading {
+        background-color: #eee;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        justify-content: space-between;
+    }
+
+    .products {
+        display: flex;
+        flex-direction: column;
+        padding: 0px 24px;
+        .product {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            margin: 15px 10px;
+            p {
+                margin: 0px;
+            }
+            img {
+                margin-right: 15px;
+            }
+        }
+        button {
+            margin-bottom: 15px;
+            width: min-content;
+            align-self: center;
+        }
+    }
+}

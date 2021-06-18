@@ -1,0 +1,33 @@
+<nz-table #basicTable
+          [nzData]="favorites">
+    <thead>
+        <tr>
+            <th>Ürünler</th>
+            <th>Fiyat</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of basicTable.data"
+            class="product-row">
+            <td class="product-col">
+                <img [src]="checkPreviewImg(data)"
+                     width="75px"
+                     (click)="onItemClick(data.id)">
+                <div>
+                    <p (click)="onItemClick(data.id)">
+                        <b>İsim:</b> {{data.title}}
+                    </p>
+                </div>
+            </td>
+            <td>{{data.price}}</td>
+            <td>
+                <i nz-icon
+                   nzType="delete"
+                   nzTheme="outline"
+                   style="cursor: pointer;"
+                   (click)="removeFavoritedItem($event, data)"></i>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

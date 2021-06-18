@@ -1,0 +1,45 @@
+<nz-card class="order-card">
+    <div class="heading">
+        <div style="display: flex;">
+            <div style="margin-right: 40px;">
+                <h3>Sipariş Tarihi</h3>
+                <p>
+                    {{order.date | date:'d MMMM yyyy EEEE'}}
+                </p>
+            </div>
+            <div>
+                <h3>Toplam Tutar</h3>
+                <p>
+                    {{order.totalCost}}
+                </p>
+            </div>
+        </div>
+        <div>
+            <h3>Sipariş ID #{{order.id}}</h3>
+            <p style="float: right;"
+               [style.color]="formattedStateName(order.state).color">
+                {{formattedStateName(order.state)?.text}}
+            </p>
+        </div>
+    </div>
+    <div class="products">
+        <div *ngFor="let orderedProduct of orderedProducts">
+            <div class="product">
+                <img [src]="checkPreviewImage(orderedProduct?.product)"
+                     width="75px">
+                <div>
+                    <h3>{{orderedProduct.product.title}}</h3>
+                    <p><b>Renk:</b> {{orderedProduct.color}}</p>
+                    <p><b>Beden:</b> {{orderedProduct.size}}</p>
+                    <p><b>Adet: </b> {{orderedProduct.count}} </p>
+                </div>
+            </div>
+        </div>
+        <button *ngIf="isCollapsed && order.orderedProducts.length > 1"
+                nz-button
+                (click)="showAllOrderedProducts()">Tümünü Göster</button>
+        <button *ngIf="!isCollapsed && order.orderedProducts.length > 1"
+                nz-button
+                (click)="collapseOrderedProducts()">Daralt</button>
+    </div>
+</nz-card>

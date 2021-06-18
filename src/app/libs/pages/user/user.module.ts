@@ -59,6 +59,12 @@ const routes: Routes = [
       },
       {
         path: 'personalized-filter', component: PersonalizedFilterComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLoginPage }
+      },
+      {
+        path: 'profile',
+        canActivate: [AngularFireAuthGuard],
+        data: { authGuardPipe: redirectUnauthorizedToLoginPage },
+        loadChildren: () => import('../user-profile/user-profile.module').then(m => m.UserProfileModule)
       }
     ]
   }

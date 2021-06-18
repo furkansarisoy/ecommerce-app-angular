@@ -1,0 +1,35 @@
+.form {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 60px 100px;
+    display: flex;
+
+    .credentials {
+        width: 100%;
+    }
+
+    .photo {
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        flex-direction: column;
+
+        nz-avatar {
+            margin-bottom: 15px;
+        }
+
+        button {
+            margin-bottom: 40px;
+        }
+    }
+}
+
+.modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    nz-avatar {
+        margin-bottom: 15px;
+    }
+}

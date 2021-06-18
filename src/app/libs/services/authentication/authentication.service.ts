@@ -91,7 +91,8 @@ export class AuthenticationService {
             orders: [],
             addresses: [],
             cards: [],
-            personalizedTags: []
+            personalizedTags: [],
+            profileImage: ''
         };
         return userRef.set(userData, {
             merge: true
