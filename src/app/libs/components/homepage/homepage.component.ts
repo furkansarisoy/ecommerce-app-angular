@@ -8,8 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class HomepageComponent implements OnInit {
 
   images = [
-    'assets/homepage/homepage1.png', 'assets/homepage/homepage2.png', 'assets/homepage/homepage3.png'
-  ]
+    {
+      url: 'assets/homepage/homepage1.png',
+      title: '',
+      subtitle: ''
+    },
+    {
+      url: 'assets/homepage/homepage2.png',
+      title: '',
+      subtitle: ''
+    },
+    {
+      url: 'assets/homepage/homepage3.png',
+      title: '',
+      subtitle: ''
+    }
+  ];
 
   constructor() { }
 

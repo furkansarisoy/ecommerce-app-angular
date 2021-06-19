@@ -49,6 +49,8 @@ import { ProductFormComponent } from './products/product-form/product-form.compo
 import { NewCategoryComponent } from './categories/new-category/new-category.component';
 import { OrdersComponent } from './orders/orders.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PersonalizedFilterComponent } from './personalized-filter/personalized-filter.component';
+import { OrderCardComponent } from './profile/order-card/order-card.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ProductFormComponent,
     NewCategoryComponent,
     OrdersComponent,
-    DashboardComponent
+    DashboardComponent,
+    PersonalizedFilterComponent,
+    OrderCardComponent
   ],
   imports: [
     CommonModule,
@@ -99,10 +103,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NzLayoutModule,
     NzSelectModule,
     NzModalModule,
-    NzMessageModule
+    NzMessageModule,
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    OrderCardComponent
   ]
 })
 export class ComponentsModule { }

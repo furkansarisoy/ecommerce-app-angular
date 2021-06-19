@@ -2,11 +2,23 @@
              nzAutoPlay>
     <div *ngFor="let image of images"
          class="carousel-wrapper"
-         [style.background-image]="'url('+image+')'"
+         [style.background-image]="'url('+image.url+')'"
          nz-carousel-content>
         <div class="overlay">
-            <h1>Lorem Ipsum</h1>
-            <h3>dolor sit amet</h3>
+            <h1>
+                {{image.title}}
+            </h1>
+            <h3>
+                {{image.subtitle}}
+            </h3>
         </div>
     </div>
 </nz-carousel>
+
+<div class="title">
+    <h1>Moda ve kaliteli kıyafetler en uygun fiyata.</h1>
+    <button nz-button
+            nzType="dashed"
+            nzSize="large"
+            [routerLink]="['/categories/male']">Alışverişe Başla</button>
+</div>

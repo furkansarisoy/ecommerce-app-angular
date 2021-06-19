@@ -1,0 +1,32 @@
+<section class="filter">
+    <div class="heading">
+        <h1>Kişiselleştirilmiş Ürün Filtresi</h1>
+        <p>
+            Aşağıda bulunan soruları cevaplarsan, beğenebileceğin ürünleri sana önerebiliriz.
+            Lütfen aşağıdaki kombinlerden beğendiklerini seç. Birden fazla seçim yapabilirsin.
+        </p>
+    </div>
+    <nz-spin [nzSpinning]="isLoading">
+        <div class="content">
+            <div class="options">
+                <div *ngFor="let option of options"
+                     (click)="onOptionSelect(option)"
+                     class="item">
+                    <img [src]="option.img"
+                         width="180px">
+                    <div *ngIf="isSelected(option)"
+                         class="check-circle">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="save"
+                        nz-button
+                        (click)="onSave()">Kaydet</button>
+                <button nz-button
+                        (click)="onSkip()">Atla</button>
+            </div>
+        </div>
+    </nz-spin>
+</section>

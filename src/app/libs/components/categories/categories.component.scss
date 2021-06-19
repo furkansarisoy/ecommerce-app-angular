@@ -16,6 +16,7 @@
     h2 {
         font-weight: bold;
         padding: 5px;
+        font-size: 22px;
     }
     ul {
         border: none;
@@ -37,6 +38,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        .card-informations {
+            padding: 10px;
+        }
         .product-title {
             line-height: normal;
             font-size: 14px;

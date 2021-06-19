@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Order } from '../models/order';
+import { Order, OrderState } from '../models/order';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AngularFireAuth } from '@angular/fire/auth';
 
@@ -62,6 +62,41 @@ export class OrderService {
                     ]
                 });
             });
+        }
+    }
+
+    formatStateName(state: string) {
+        switch (state) {
+            case OrderState.Cancelled:
+                return {
+                    text: 'İptal Edildi',
+                    color: 'red'
+                }
+            case OrderState.Delivered:
+                return {
+                    text: 'Teslim Edildi',
+                    color: 'green'
+                }
+            case OrderState.Ordered:
+                return {
+                    text: 'Sipariş Alındı',
+                    color: 'blue'
+                }
+            case OrderState.Preparing:
+                return {
+                    text: 'Hazırlanıyor',
+                    color: 'blue'
+                }
+            case OrderState.Shipment:
+                return {
+                    text: 'Kargoya Verildi',
+                    color: 'blue'
+                }
+            default:
+                return {
+                    text: 'Veri Yok',
+                    color: 'black'
+                };
         }
     }
 

@@ -1,0 +1,57 @@
+<div class="user-profile-page">
+    <div class="heading">
+        <h1>Hesabım</h1>
+        <hr>
+    </div>
+    <div class="content-wrapper">
+        <div class="left-nav">
+            <nz-avatar [nzSize]="100"
+                       nzIcon="user"
+                       [nzSrc]="activePerson?.profileImage"
+                       class="avatar"></nz-avatar>
+            <h3>
+                {{activePerson?.name}} {{activePerson?.surname}}
+            </h3>
+            <hr style="width: 320px;" />
+            <ul nz-menu
+                nzMode="inline">
+                <li nz-menu-item
+                    [routerLink]="['orders']">
+                    <i nz-icon
+                       nzType="shopping-cart"
+                       nzTheme="outline"></i>
+                    <span>Siparişlerim</span>
+                </li>
+                <li nz-menu-item
+                    [routerLink]="['favorites']">
+                    <i nz-icon
+                       nzType="heart"
+                       nzTheme="outline"></i>
+                    <span>Favori Listem</span>
+                </li>
+                <!-- <li nz-menu-item>
+                    <i nz-icon
+                       nzType="wallet"
+                       nzTheme="outline"></i>
+                    <span>Adreslerim</span>
+                </li>
+                <li nz-menu-item>
+                    <i nz-icon
+                       nzType="credit-card"
+                       nzTheme="outline"></i>
+                    <span>Ödeme Bilgilerim</span>
+                </li> -->
+                <li nz-menu-item
+                    [routerLink]="['settings']">
+                    <i nz-icon
+                       nzType="lock"
+                       nzTheme="outline"></i>
+                    <span>Hesap ve Güvenlik</span>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<form nz-form
+      [formGroup]="profileSettingsForm"
+      nzLayout="vertical"
+      class="form">
+    <div class="credentials">
+        <nz-form-item>
+            <nz-form-label [nzSm]="6"
+                           [nzXs]="24"
+                           nzRequired
+                           nzFor="name">İsim</nz-form-label>
+            <nz-form-control [nzSm]="14"
+                             [nzXs]="24">
+                <input nz-input
+                       formControlName="name"
+                       id="name"
+                       type="text" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="6"
+                           [nzXs]="24"
+                           nzRequired
+                           nzFor="surname">Soyisim</nz-form-label>
+            <nz-form-control [nzSm]="14"
+                             [nzXs]="24">
+                <input nz-input
+                       formControlName="surname"
+                       id="surname"
+                       type="text" />
+            </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button
+                (click)="formSubmit()">Bilgilerimi Güncelle</button>
+    </div>
+    <div class="photo">
+        <nz-avatar [nzSize]="150"
+                   nzIcon="user"
+                   [nzSrc]="activePerson?.profileImage"
+                   class="avatar"></nz-avatar>
+        <button nz-button
+                type="click"
+                (click)="showProfileImageModal()">Fotoğrafı Değiştir</button>
+
+    </div>
+</form>
+
+<nz-modal [(nzVisible)]="profileImageModalVisible"
+          nzTitle="Profil Fotoğrafını Değiştir"
+          (nzOnCancel)="handleProfileImageModalCancel()"
+          (nzOnOk)="onProfileImageChange()">
+    <ng-container *nzModalContent>
+        <div class="modal-content">
+            <nz-avatar [nzSize]="150"
+                       nzIcon="user"
+                       [nzSrc]="profileImage"
+                       class="avatar"></nz-avatar>
+            <input nz-input
+                   [(ngModel)]="profileImage" />
+        </div>
+
+    </ng-container>
+</nz-modal>
